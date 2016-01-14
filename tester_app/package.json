@@ -2,7 +2,7 @@
   "name": "tester_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,9 +10,12 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.14.2",
+    "cookie-parser": "^1.4.1",
     "ejs": "^2.3.4",
     "express": "^4.13.3",
+    "handlebars": "^4.0.5",
     "kerberos": "0.0.17",
+    "mongodb": "^2.1.4",
     "mongoose": "^4.3.5",
     "morgan": "^1.6.1"
   }
