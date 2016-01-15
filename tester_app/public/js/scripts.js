@@ -1,5 +1,6 @@
 console.log('scripts loaded');
 
+// Create users:
 
 function createUser(userData, callback){
   $.ajax({
@@ -41,11 +42,14 @@ function setCreateUserHandler(){
 
     createUser(userData, function(user){
       console.log("User Data: "+ userData);
+      $('#login-div').show();
+      $('#sign-up-div').hide();
       updateUsersAndView();
     });
   });
 }
 
+// Login Functions:
 
 function login(username, password, callback) {
   callback = callback || function(){};
@@ -88,6 +92,19 @@ function setLogoutFormHandler(){
     $.removeCookie('token');
   });
 }
+
+function toggleLogin(){
+  $('#create-account').click(function(){
+    $('#login-div').hide();
+    $('#sign-up-div').show();
+  });
+  $('#already-user').click(function(){
+    $('#login-div').show();
+    $('#sign-up-div').hide();
+  })
+}
+
+// Render Page:
 
 function getAllUsers(callback){
   $.ajax({
@@ -132,4 +149,9 @@ $(function(){
   setLogoutFormHandler();
   setCreateUserHandler();
   updateUsersAndView();
+<<<<<<< 29437262c284140984958e18f9ce10db59165dd2
 });
+=======
+  toggleLogin();
+})
+>>>>>>> login functionality and book form
