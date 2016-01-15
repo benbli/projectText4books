@@ -16,19 +16,19 @@ function setCreateUserHandler(){
   $('form.sign-up').submit(function(e){
     e.preventDefault();
 
-    var usernameField = $('#signup-username');
+    var usernameField = $(this).find('input[name="user[username]"]');
     var usernameText = usernameField.val();
     usernameField.val('');
 
-    var passwordField = $('#signup-password');
+    var passwordField = $(this).find('input[name="user[password]"]');
     var passwordText = passwordField.val();
     passwordField.val('');
 
-    var emailField = $('#signup-email');
+    var emailField = $(this).find('input[name="user[email]"]');
     var emailText = emailField.val();
     emailField.val('');
 
-    var collegeField = $('#signup-college');
+    var collegeField = $(this).find('input[name="user[college]"]');
     var collegeText = collegeField.val();
     collegeField.val('');
 
@@ -40,7 +40,7 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      console.log(userData);
+      console.log("User Data: "+ userData);
       updateUsersAndView();
     })
   })
@@ -82,15 +82,6 @@ function setLoginFormHandler(){
     });
   });
 }
-// render users in a Handlebar template
-// function renderUsers(users) {
-//   var source = $('users-template').html();    // find the template
-//   var template = Handlebars.compile(source);  // create the template
-//   var context = {users: usersArray};    // data that gets passed
-//   var usersElement = template(context);  // generate the template
-//   return usersElement;
-// }
-
 
 function setLogoutFormHandler(){
   $('#logout').click(function(){
@@ -100,12 +91,11 @@ function setLogoutFormHandler(){
 
 function getAllUsers(callback){
   $.ajax({
-    method: 'get',
-    api: '/api/users',
+    url: '/api/users',
     success: function(data){
       var users = data.users || [];
       callback(users)
-      console.log("users: " + data);
+      console.log("users: " + users);
     }
   });
 }
