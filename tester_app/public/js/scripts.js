@@ -33,7 +33,6 @@ function setLoginFormHandler(){
       // console.log('login complete', data);
     });
   });
-<<<<<<< d563023285428bb02479d46f55b7ba5b508e251a
 }
 // render users in a Handlebar template
 // function renderUsers(users) {
@@ -44,11 +43,6 @@ function setLoginFormHandler(){
 //   return usersElement;
 // }
 
-$(function(){
-  setLoginFormHandler();
-});
-=======
-};
 
 function setLogoutFormHandler(){
   $('#logout').click(function(){
@@ -61,4 +55,3 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
 })
->>>>>>> fixes merge
