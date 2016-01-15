@@ -12,8 +12,8 @@
   <script id="users-template" type="text/x-handlebars-template">
     <h1>Users:</h1>
     {{#each users}}
-      <div>
-        <h3> {{ username }}</h3>
+      <div class = "user-only">
+        <h3> {{ username }} : {{password}}</h3>
       </div>
     {{/each}}
   </script>
@@ -24,7 +24,7 @@
   <button id = "logout" value = "Logout">Logout</button>
   <% include ./partials/userForms %>
 
-  <section id = "users">
+  <section class = "user-only" id = "users">
   </section>
 
 </body>

@@ -118,10 +118,12 @@ function updateUsersAndView(){
 
   if($.cookie('token')){
     console.log('cookie is present!');
-    $('.user-only').hide();
+    $('.user-only').show();
+    $('.logged-out').hide();
   } else {
     console.log("no cookies!");
-    $('.user-only').show();
+    $('.user-only').hide();
+    $('.logged-out').show();
   }
 }
 
