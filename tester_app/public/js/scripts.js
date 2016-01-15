@@ -9,7 +9,7 @@ function createUser(userData, callback){
     success: function(data){
       callback(data);
     }
-  })
+  });
 }
 
 function setCreateUserHandler(){
@@ -42,8 +42,8 @@ function setCreateUserHandler(){
     createUser(userData, function(user){
       console.log("User Data: "+ userData);
       updateUsersAndView();
-    })
-  })
+    });
+  });
 }
 
 
@@ -87,14 +87,14 @@ function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
   });
-};
+}
 
 function getAllUsers(callback){
   $.ajax({
     url: '/api/users',
     success: function(data){
       var users = data.users || [];
-      callback(users)
+      callback(users);
       console.log("users: " + users);
     }
   });
@@ -132,4 +132,4 @@ $(function(){
   setLogoutFormHandler();
   setCreateUserHandler();
   updateUsersAndView();
-})
+});
