@@ -12,6 +12,7 @@ function login(username, password, callback) {
     },
     success: function(data){
       $.cookie('token', data.token);
+      console.log(data);
       callback(data);
     }
   })
@@ -29,8 +30,8 @@ function setLoginFormHandler(){
     var password = passwordField.val();
     passwordField.val('');
 
-    login(username, password, function(data){
-      console.log('login complete', data);
+    login(username, password, function(){
+      // console.log('login complete', data);
     });
   });
 };
