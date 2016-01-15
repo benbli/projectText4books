@@ -149,9 +149,5 @@ $(function(){
   setLogoutFormHandler();
   setCreateUserHandler();
   updateUsersAndView();
-<<<<<<< 29437262c284140984958e18f9ce10db59165dd2
-});
-=======
   toggleLogin();
-})
->>>>>>> login functionality and book form
+});
