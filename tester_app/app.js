@@ -6,6 +6,10 @@
 var express = require('express');
 var app = express();
 
+// Hide API key
+require('dotenv').load();
+console.log(process.env.W_API_KEY);
+
 // Morgan: Request Logging
 var morgan = require('morgan');
 app.use(morgan('dev'));
@@ -25,9 +29,7 @@ app.use(cookieParser());
 var loaduser = require('./middleware/loadUser');
 app.use(loaduser);
 
-// Handlebars template rendering
-// var handlebars = require('handlebars');
-// app.use(handlebars());
+
 
 // EJS: Template Rendering
 app.set('view engine', 'ejs');
@@ -57,6 +59,9 @@ app.use('/api/books', books);
 // ****** Listen! ******
 // ---------------------
 var port = process.env.PORT || 8080;  // heroku will give us PORT
-app.listen(port, function () {
+app.listen(parseInt(port), function (err) {
+  if (err) {
+    throw err;
+  }
   console.log('listening on ' + port);
 });
