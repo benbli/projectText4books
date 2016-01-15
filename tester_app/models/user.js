@@ -46,15 +46,3 @@ UserSchema.methods.setToken = function(callback){
 };
 
 module.exports = mongoose.model('User', UserSchema);
-
-
-// UPDATE the user's bio
-// router.patch ('/', function (req, res) {
-//   if(req.user){
-//     req.user.bio = req.body.user.bio; // modify the user's bio
-//
-//     req.user.save(function (err, databaseUser) {
-//       res.json(databaseUser);
-//     });
-//   }
-// });

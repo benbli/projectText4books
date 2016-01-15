@@ -45,4 +45,15 @@ router.delete('/', function(req, res){
   });
 });
 
+// UPDATE the user's bio (going to add more bio information)
+router.patch ('/', function (req, res) {
+  if(req.user){
+    req.user.bio = req.body.user.bio; // modify the user's bio
+
+    req.user.save(function (err, databaseUser) {
+      res.json(databaseUser);
+    });
+  }
+});
+
 module.exports = router;
