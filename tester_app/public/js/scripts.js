@@ -101,7 +101,7 @@ function toggleLogin(){
   $('#already-user').click(function(){
     $('#login-div').show();
     $('#sign-up-div').hide();
-  })
+  });
 }
 
 // Render Page:

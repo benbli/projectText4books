@@ -14,8 +14,11 @@
     {{#each users}}
       <div class = "user-only">
         <h3> {{ username }} : {{password}}</h3>
+        <h3>{{ college }} </h3>
+        <h3>{{ email }} </h3>
       </div>
     {{/each}}
+
   </script>
 
 </head>
@@ -27,6 +30,9 @@
 
   <section class = "user-only" id = "users">
   </section>
+
+<% include ./partials/user-profile %>
+
 
 </body>
 </html>
