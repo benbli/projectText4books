@@ -12,7 +12,6 @@ function login(username, password, callback) {
     },
     success: function(data){
       $.cookie('token', data.token);
-      console.log(data);
       callback(data);
     }
   })
@@ -35,6 +34,7 @@ function setLoginFormHandler(){
     });
   });
 };
+
 
 $(function(){
   setLoginFormHandler();
