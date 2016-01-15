@@ -21,6 +21,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+// Custom Middleware! - if a user token is included, find the user
+
+
 // Handlebars template rendering
 // var handlebars = require('handlebars');
 // app.use(handlebars());
@@ -30,7 +33,7 @@ app.set('view engine', 'ejs');
 
 // Mongoose! - Load and connect to our mongo database
 // make sure to run mongod in another terminal window
-var mongoPath = 'mongodb://localhost/text4books';
+var mongoPath = process.env.MONGOLAB_URI || 'mongodb://localhost/text4books'; // searches for MONGOLAB_URI first
 var mongoose = require('mongoose');
 mongoose.connect(mongoPath);
 
