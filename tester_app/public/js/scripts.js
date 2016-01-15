@@ -62,6 +62,7 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
+      renderTextbookForm(data.id);
       $.cookie('token', data.token);
       callback(data);
       // console.log(username);
@@ -104,6 +105,58 @@ function toggleLogin(){
   });
 }
 
+// Create Textbooks
+function renderTextbookForm(user){
+  var $textbookForm = $('<form>').addClass('textbook-generator');
+  $textbookForm.append( $('<input type="hidden" name="textbook-id">').val(user._id) );
+  $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
+  $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
+  $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
+  $textbookForm.append( $('<input type="submit">') );
+  $('#textbook-form-div').append($textbookForm);
+}
+
+function setTextbookFormHandler(textbookData){
+  $('#book-form').submit(function(e){
+    e.preventDefault();
+
+    var titleField = $(this).find('input[name="title"]');
+    var titleText = titleField.val();
+    titleField.val('');
+
+    var conditionField = $(this).find('input[name="condition"]');
+    var conditionText = conditionField.val();
+    conditionField.val('');
+
+    var isbnField = $(this).find('input[name="isbn"]');
+    var isbnText = isbnField.val();
+    isbnField.val('');
+
+    // var userId = req.body.user;
+    // console.log(userId);
+
+    textbookData = { title: titleText, condition: conditionText, isbn: isbnText};
+    console.log(textbookData);
+
+    createTextbook(userId, textbookData, function(textbook){
+      updateView();
+    })
+  })
+}
+
+function createTextbook(userId, textbookData, callback){
+  callback = callback || function(){};
+  $.ajax({
+    method: 'post',
+    url: '/api/users/' + userId + '/textbooks',
+    data: textbookData,
+    success: function(data){
+      var textbook = data.textbooks;
+      callback(textbook);
+    }
+  })
+}
+
 // Render Page:
 
 function getAllUsers(callback){
@@ -117,21 +170,29 @@ function getAllUsers(callback){
   });
 }
 
-function renderUsers(usersArray){
+function renderTextbooks(textbooksArray){
   var source = $("#users-template").html();  // Go find the template
   var template = Handlebars.compile(source); // Create a template function
-  var context = {users: usersArray};  // What data will i pass the template?
-  var usersElement = template( context ); // Generate HTML
-  return usersElement;
+  var context = {textbooks: textbooksArray};  // What data will i pass the template?
+  var textbookElement = template( context ); // Generate HTML
+  return textbookElement;
 }
 
-function updateUsersAndView(){
+// function renderUsers(usersArray){
+//   var source = $("#users-template").html();  // Go find the template
+//   var template = Handlebars.compile(source); // Create a template function
+//   var context = {users: usersArray};  // What data will i pass the template?
+//   var usersElement = template( context ); // Generate HTML
+//   return usersElement;
+// }
 
-  getAllUsers(function(users){
+function updateView(){
+  getAllUsers(function(textbooks){
     $('section#users').empty();
-    var usersElement = renderUsers(users);
-    $('section#users').append(usersElement);
+    var textbookElement = renderTextbooks(textbooks);
+    $('section#users').append(textbookElement);
   });
+
 
   if($.cookie('token')){
     console.log('cookie is present!');
@@ -148,6 +209,7 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();
-  updateUsersAndView();
+  setTextbookFormHandler();
+  updateView();
   toggleLogin();
 });

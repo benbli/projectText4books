@@ -13,9 +13,11 @@
     <h1>Users:</h1>
     {{#each users}}
       <div class = "user-only">
+
         <h3> {{ username }} : {{password}}</h3>
         <h3>{{ college }} </h3>
         <h3>{{ email }} </h3>
+
       </div>
     {{/each}}
 
@@ -27,6 +29,9 @@
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
   <% include ./partials/userForms %>
   <% include ./partials/list-book-form %>
+
+  <div id="textbook-form-div">
+  </div>
 
   <section class = "user-only" id = "users">
   </section>
