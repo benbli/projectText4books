@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypts');
+var bcrypt = require('bcryptjs');
 var crypto = require('crypto');
 
 var UserSchema = mongoose.Schema({
   username: { type: String },
-  password: ( type: String ),
+  password: { type: String },
   college: { type: String },
   email: { type: String },
   token: { type: String }
@@ -18,7 +18,7 @@ UserSchema.pre('save', function(next){
 });
 
 UserSchema.methods.authenticate = function(passwordTry, callback){
-  bcrypt.compare(passwordTry, this.password function(err, isMatch){
+  bcrypt.compare(passwordTry, this.password, function(err, isMatch){
     if(err){ return callback(err) }
     callback(null, isMatch);
   });

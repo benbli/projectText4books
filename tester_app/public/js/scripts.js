@@ -9,7 +9,7 @@ function login(username, password, callback) {
     data: {
       username: username,
       password: password
-    };
+    },
     success: function(data){
       $.cookie('token', data.token);
       callback(data);

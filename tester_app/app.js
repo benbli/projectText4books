@@ -43,6 +43,8 @@ mongoose.connect(mongoPath);
 var index = require('./routes/index');
 app.use('/', index);
 
+var users = require('./routes/users');
+app.use('/api/users', users)
 
 // ---------------------
 // ****** Listen! ******

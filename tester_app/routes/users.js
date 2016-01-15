@@ -7,7 +7,8 @@ router.post('/', function(req, res){
   var newUser = new User(userData);
 
   newUser.save(function(err, databaseUser){
-    res.redirect('/';)
+    res.redirect('/');
+    $('body').append($('<h1>').text(req.body.user));
   });
 });
 
