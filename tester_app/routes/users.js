@@ -3,27 +3,28 @@ var router = express.Router();
 var User = require('../models/user');
 
 router.post('/', function(req, res){
-  var userData = req.body.user;
-  var newUser = new User(userData);
-
-  newUser.save(function(err, databaseUser){
+  var userData = req.body.user;  // data sent
+  var newUser = new User(userData);  // make a new user using the data sent
+    // may look like: req.body.user = {username: 'lichard', password: '1234'}
+  newUser.save(function(err, databaseUser){  // save user to the database
     res.redirect('/');
   });
 });
 
-router.post('/authenticate', function(req, res){
-  console.log("trying to authenticateeeee");
+router.post('/authenticate', function(req, res){      // POST to /api/users/authenticate
+  console.log("trying to authenticateeeee with TOKEN");
   var usernameTry = req.body.username;
   var passwordTry = req.body.password;
+  // find user by username
   User.findOne({ username: usernameTry }, function(err, databaseUser){
     databaseUser.authenticate(passwordTry, function(err, isMatch){
       if(isMatch){
         databaseUser.setToken(function(){
-          res.json({description: "Correct Password!!!", token: databaseUser.token });
-        })
+          res.json({description: "Correct Password!!!", token: databaseUser.token });  // send token as json
+        });
       } else {
-        res.json({description: "Sorry, wrong passwordddd"});
-      };
+        res.json({description: "Sorry, wrong passwordddd", status: 302});
+      }
     });
   });
 });
@@ -33,7 +34,7 @@ router.delete('/', function(req, res){
   var username = req.body.username;
   var password = req.body.password;
   User.findOne({ username: username}, function(databaseUser){
-    databaseUser.deleteToken()
+    databaseUser.deleteToken();
   });
 });
 

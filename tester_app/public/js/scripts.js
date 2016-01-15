@@ -14,7 +14,7 @@ function login(username, password, callback) {
       $.cookie('token', data.token);
       callback(data);
     }
-  })
+  });
 }
 
 function setLoginFormHandler(){
@@ -33,9 +33,16 @@ function setLoginFormHandler(){
       // console.log('login complete', data);
     });
   });
-};
-
+}
+// render users in a Handlebar template
+// function renderUsers(users) {
+//   var source = $('users-template').html();    // find the template
+//   var template = Handlebars.compile(source);  // create the template
+//   var context = {users: usersArray};    // data that gets passed
+//   var usersElement = template(context);  // generate the template
+//   return usersElement;
+// }
 
 $(function(){
   setLoginFormHandler();
-})
+});
