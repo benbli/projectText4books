@@ -2,14 +2,21 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 
+router.get('/', function(req, res){
+  User.find({}, function(err, databaseUsers){
+    res.json({users: databaseUsers});
+  });
+});
+
 router.post('/', function(req, res){
   var userData = req.body.user;  // data sent
   var newUser = new User(userData);  // make a new user using the data sent
     // may look like: req.body.user = {username: 'lichard', password: '1234'}
   newUser.save(function(err, databaseUser){  // save user to the database
-    res.redirect('/');
+    res.json(databaseUser);
   });
 });
+
 
 router.post('/authenticate', function(req, res){      // POST to /api/users/authenticate
   console.log("trying to authenticateeeee with TOKEN");

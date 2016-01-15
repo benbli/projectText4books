@@ -8,10 +8,24 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src="./js/scripts.js"></script>
+
+  <script id="users-template" type="text/x-handlebars-template">
+    <h1>Users:</h1>
+    {{#each users}}
+      <div>
+        <h3> {{ username }}</h3>
+      </div>
+    {{/each}}
+  </script>
+
 </head>
+
 <body>
   <button id = "logout" value = "Logout">Logout</button>
   <% include ./partials/userForms %>
+
+  <section id = "users">
+  </section>
 
 </body>
 </html>

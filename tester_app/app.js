@@ -21,9 +21,9 @@ app.use(bodyParser.urlencoded({extended: true}));
 var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-// Custom Middleware! - if a user token is included, find the user
-// var loadUser = require('./middleware/loadUser');
-// app.use(loadUser);
+// Middleware:
+var loaduser = require('./middleware/loadUser');
+app.use(loaduser);
 
 // Handlebars template rendering
 // var handlebars = require('handlebars');
