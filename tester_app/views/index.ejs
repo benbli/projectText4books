@@ -8,9 +8,20 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src="./js/scripts.js"></script>
+  <script src="./js/book.js"></script>
 
   <script id="users-template" class = "user-only" type="text/x-handlebars-template">
     <h3> Hello {{ username }} of {{ college }}</h3>
+  </script>
+
+  <script id="book-template" type="text/x-handlebars-template">
+    <h1>{{ISBN:0201558025}}</h1>
+    <!-- <h1>{{results.[0].artistName}}</h1>
+      <ul>
+      {{#each results}}
+      <li>{{trackName}}</li>
+      {{/each}}
+      </ul> -->
   </script>
 
 </head>
@@ -20,7 +31,12 @@
   <% include ./partials/userForms %>
   <% include ./partials/list-book-form %>
 
-  <div id="textbook-form-div">
+  <h4>Textbook API</h4>
+  <input id="input" type="text" name="textbook" placeholder="Enter textbook">
+  <input id="submit" type="submit" name="name" value="Show Me my book">
+
+  <div id="rendered-textbooks">
+
   </div>
 
   <!-- <section class = "user-only" id = "users">
