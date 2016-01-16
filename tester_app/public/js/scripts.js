@@ -1,9 +1,3 @@
-// Render current user
-// function renderCurrentUser(user){
-//   var username = $('<h2>').text(user.username);
-//   var userId = $('<h3>').text(user.user._id);
-// }
-
 
 // Create users:
 
@@ -13,9 +7,8 @@ function createUser(userData, callback){
     url: '/api/users',
     data: {user: userData},
     success: function(data){
-      var user = data.user;
-      console.log('success create user: ', data);
-      callback(user);
+      console.log('success create user: ', data); // data.user is undefined...
+      callback(data);
     }
   });
 }
@@ -23,7 +16,6 @@ function createUser(userData, callback){
 function setCreateUserHandler(){
   $('form.sign-up').submit(function(e){
     e.preventDefault();
-    console.log('sign upppp');
 
     var usernameField = $(this).find('input[name="user[username]"]');
     var usernameText = usernameField.val();
@@ -49,8 +41,7 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      console.log("User Data: ", userData);
-      // console.log("user: ", user);
+      console.log("User : ", user);
       $('#login-div').show();
       $('#sign-up-div').hide();
       updateView();
@@ -59,7 +50,6 @@ function setCreateUserHandler(){
 }
 
 // Login Functions:
-
 function login(username, password, callback) {
   callback = callback || function(){};
   console.log(username, password);
@@ -71,11 +61,9 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
-      // $('#textbook-user-id').val(username);
-      console.log(username);
       $.cookie('token', data.token);
-      callback(data);
-      // console.log(username);
+      console.log('data id: ', data.id);
+      setTextbookUserId(data.id);
     }
   });
 }
@@ -92,7 +80,8 @@ function setLoginFormHandler(){
     var password = passwordField.val();
     passwordField.val('');
 
-    login(username, password, function(){
+    login(username, password, function(callback){
+      setTextbookUserId(data);
       // renderTextbookForm(username);
       // console.log('login complete', data);
     });
@@ -116,22 +105,15 @@ function toggleLogin(){
   });
 }
 
-// Create Textbooks
-function renderTextbookForm(user){
-  var $textbookForm = $('<form>').addClass('user-only').prop('id', 'textbook-generator');
-  // $textbookForm.append( $('<input type="hidden" name="user-id">').val(user._id) );
-  $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
-  $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
-  $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
-  $textbookForm.append( $('<input type="submit" value = "Sell Textbook">') );
-  $('#textbook-form-div').append($textbookForm);
-}
+function setTextbookUserId(userId){
+  $('input[name="textbook-user-id"]').val(userId);
+};
 
-function setTextbookFormHandler(textbookData){
-  $('#textbook-generator').submit(function(e){
+function setTextbookFormHandler(textbookData, data){
+  $('body').on('submit', 'form#book-form', function(e){
     e.preventDefault();
 
-    var titleField = $(this).find('input[name="title"]');
+    var titleField = $(this).find('input[name="textbook-title"]');
     var titleText = titleField.val();
     titleField.val('');
 
@@ -143,12 +125,10 @@ function setTextbookFormHandler(textbookData){
     var isbnText = isbnField.val();
     isbnField.val('');
 
-    var userId = $(this).find('input[name="user-id"]');
+    var userId = $(this).find('input[name="textbook-user-id"]').val();
+    console.log('user-id: ', userId);
 
-    // var userId = req.body.user;
-    // console.log(userId);
-
-    textbookData = { title: titleText, condition: conditionText, isbn: isbnText};
+    textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
     console.log(textbookData);
 
     createTextbook(userId, textbookData, function(textbook){
@@ -162,10 +142,10 @@ function createTextbook(userId, textbookData, callback){
   $.ajax({
     method: 'post',
     url: '/api/users/' + userId + '/textbooks',
-    data: {textbooks: textbookData},
+    data: {textbook: textbookData},
     success: function(data){
       console.log(userId);
-      var textbook = data.textbooks;
+      var textbook = data.textbook;
       callback(textbook);
     }
   })
@@ -212,7 +192,6 @@ function updateView(){
     console.log('cookie is present!');
     $('.user-only').show();
     $('.logged-out').hide();
-    renderTextbookForm();
   } else {
     console.log("no cookies!");
     $('.user-only').hide();

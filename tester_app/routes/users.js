@@ -58,7 +58,7 @@ router.delete('/', function(req, res){
 });
 
 // Create a textbook
-router.post(':id/textbooks', function(req, res){
+router.post('/:id/textbooks', function(req, res){
   var textbookBody = req.body.textbook;
   textbookBody.username = req.user.username;
   // console.log();
