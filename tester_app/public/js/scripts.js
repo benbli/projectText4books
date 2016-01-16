@@ -62,7 +62,8 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
-      renderTextbookForm(data.id);
+      $('#textbook-user-id').val(username);
+      console.log(username);
       $.cookie('token', data.token);
       callback(data);
       // console.log(username);
@@ -106,15 +107,15 @@ function toggleLogin(){
 }
 
 // Create Textbooks
-function renderTextbookForm(user){
-  var $textbookForm = $('<form>').addClass('textbook-generator');
-  $textbookForm.append( $('<input type="hidden" name="textbook-id">').val(user._id) );
-  $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
-  $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
-  $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
-  $textbookForm.append( $('<input type="submit">') );
-  $('#textbook-form-div').append($textbookForm);
-}
+// function renderTextbookForm(user){
+//   var $textbookForm = $('<form>').addClass('textbook-generator');
+//   $textbookForm.append( $('<input type="hidden" name="textbook-id">').val(user._id) );
+//   $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
+//   $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
+//   $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
+//   $textbookForm.append( $('<input type="submit">') );
+//   $('#textbook-form-div').append($textbookForm);
+// }
 
 function setTextbookFormHandler(textbookData){
   $('#book-form').submit(function(e){
@@ -151,6 +152,7 @@ function createTextbook(userId, textbookData, callback){
     url: '/api/users/' + userId + '/textbooks',
     data: textbookData,
     success: function(data){
+      console.log(userId);
       var textbook = data.textbooks;
       callback(textbook);
     }
@@ -178,13 +180,13 @@ function renderTextbooks(textbooksArray){
   return textbookElement;
 }
 
-// function renderUsers(usersArray){
-//   var source = $("#users-template").html();  // Go find the template
-//   var template = Handlebars.compile(source); // Create a template function
-//   var context = {users: usersArray};  // What data will i pass the template?
-//   var usersElement = template( context ); // Generate HTML
-//   return usersElement;
-// }
+function renderUsers(usersArray){
+  var source = $("#users-template").html();  // Go find the template
+  var template = Handlebars.compile(source); // Create a template function
+  var context = {users: usersArray};  // What data will i pass the template?
+  var usersElement = template( context ); // Generate HTML
+  return usersElement;
+}
 
 function updateView(){
   getAllUsers(function(textbooks){

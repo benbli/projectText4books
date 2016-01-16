@@ -9,18 +9,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
   <script src="./js/scripts.js"></script>
 
-  <script id="users-template" type="text/x-handlebars-template">
-    <h1>Users:</h1>
-    {{#each users}}
-      <div class = "user-only">
-
-        <h3> {{ username }} : {{password}}</h3>
-        <h3>{{ college }} </h3>
-        <h3>{{ email }} </h3>
-
-      </div>
-    {{/each}}
-
+  <script id="users-template" class = "user-only" type="text/x-handlebars-template">
+        <h3> Hello {{ username }} of {{ college }}</h3>
   </script>
 
 </head>

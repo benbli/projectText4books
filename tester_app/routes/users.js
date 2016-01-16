@@ -22,12 +22,14 @@ router.post('/authenticate', function(req, res){      // POST to /api/users/auth
   console.log("trying to authenticateeeee with TOKEN");
   var usernameTry = req.body.username;
   var passwordTry = req.body.password;
+  var id = req.body.id;
+  console.log("req.body.id: " + id);
   // find user by username
   User.findOne({ username: usernameTry }, function(err, databaseUser){
     databaseUser.authenticate(passwordTry, function(err, isMatch){
       if(isMatch){
         databaseUser.setToken(function(){
-          res.json({description: "Correct Password!!!", token: databaseUser.token });  // send token as json
+          res.json({id: databaseUser.id, description: "Correct Password!!!", token: databaseUser.token });  // send token as json
         });
       } else {
         res.json({description: "Sorry, wrong passwordddd", status: 302});

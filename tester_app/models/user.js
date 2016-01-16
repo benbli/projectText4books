@@ -7,7 +7,7 @@ var TextbookSchema = mongoose.Schema({
   title: { type: String },
   isbn: { type: String },
   condition: { type: String },
-  status: { type: String, default: 0 }
+  status: { type: String, default: 0 },
 });
 
 var UserSchema = mongoose.Schema({
