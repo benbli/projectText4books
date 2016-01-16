@@ -1,4 +1,9 @@
-console.log('scripts loaded');
+// Render current user
+// function renderCurrentUser(user){
+//   var username = $('<h2>').text(user.username);
+//   var userId = $('<h3>').text(user.user._id);
+// }
+
 
 // Create users:
 
@@ -8,7 +13,9 @@ function createUser(userData, callback){
     url: '/api/users',
     data: {user: userData},
     success: function(data){
-      callback(data);
+      var user = data.user;
+      console.log('success create user: ', data);
+      callback(user);
     }
   });
 }
@@ -16,6 +23,7 @@ function createUser(userData, callback){
 function setCreateUserHandler(){
   $('form.sign-up').submit(function(e){
     e.preventDefault();
+    console.log('sign upppp');
 
     var usernameField = $(this).find('input[name="user[username]"]');
     var usernameText = usernameField.val();
@@ -41,10 +49,11 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      console.log("User Data: "+ userData);
+      console.log("User Data: ", userData);
+      // console.log("user: ", user);
       $('#login-div').show();
       $('#sign-up-div').hide();
-      updateUsersAndView();
+      updateView();
     });
   });
 }
@@ -62,7 +71,7 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
-      $('#textbook-user-id').val(username);
+      // $('#textbook-user-id').val(username);
       console.log(username);
       $.cookie('token', data.token);
       callback(data);
@@ -84,6 +93,7 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(){
+      // renderTextbookForm(username);
       // console.log('login complete', data);
     });
   });
@@ -107,18 +117,18 @@ function toggleLogin(){
 }
 
 // Create Textbooks
-// function renderTextbookForm(user){
-//   var $textbookForm = $('<form>').addClass('textbook-generator');
-//   $textbookForm.append( $('<input type="hidden" name="textbook-id">').val(user._id) );
-//   $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
-//   $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
-//   $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
-//   $textbookForm.append( $('<input type="submit">') );
-//   $('#textbook-form-div').append($textbookForm);
-// }
+function renderTextbookForm(user){
+  var $textbookForm = $('<form>').addClass('user-only').prop('id', 'textbook-generator');
+  // $textbookForm.append( $('<input type="hidden" name="user-id">').val(user._id) );
+  $textbookForm.append( $('<input type="text" name="title" placeholder = "Textbook Title">') );
+  $textbookForm.append( $('<input type="text" name="condition" placeholder = "Textbook Condition">') );
+  $textbookForm.append( $('<input type="text" name="isbn" placeholder = "Textbook ISBN">') );
+  $textbookForm.append( $('<input type="submit" value = "Sell Textbook">') );
+  $('#textbook-form-div').append($textbookForm);
+}
 
 function setTextbookFormHandler(textbookData){
-  $('#book-form').submit(function(e){
+  $('#textbook-generator').submit(function(e){
     e.preventDefault();
 
     var titleField = $(this).find('input[name="title"]');
@@ -132,6 +142,8 @@ function setTextbookFormHandler(textbookData){
     var isbnField = $(this).find('input[name="isbn"]');
     var isbnText = isbnField.val();
     isbnField.val('');
+
+    var userId = $(this).find('input[name="user-id"]');
 
     // var userId = req.body.user;
     // console.log(userId);
@@ -150,7 +162,7 @@ function createTextbook(userId, textbookData, callback){
   $.ajax({
     method: 'post',
     url: '/api/users/' + userId + '/textbooks',
-    data: textbookData,
+    data: {textbooks: textbookData},
     success: function(data){
       console.log(userId);
       var textbook = data.textbooks;
@@ -167,7 +179,7 @@ function getAllUsers(callback){
     success: function(data){
       var users = data.users || [];
       callback(users);
-      console.log("users: " + users);
+      // console.log("users: " + users);
     }
   });
 }
@@ -200,6 +212,7 @@ function updateView(){
     console.log('cookie is present!');
     $('.user-only').show();
     $('.logged-out').hide();
+    renderTextbookForm();
   } else {
     console.log("no cookies!");
     $('.user-only').hide();
