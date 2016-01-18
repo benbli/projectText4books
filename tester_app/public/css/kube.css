@@ -5,6 +5,72 @@
 -----------------------------------------------------------------------------*/
 html {
   box-sizing: border-box;
+  position: absolute;
+}
+/*positing of sign up div */
+#sign-up-div{
+  position: relative;
+  left: 100px;
+}
+#signup-password{
+  position: relative;
+  right: 205px;
+  top: 70px;
+}
+#signup-email{
+  position: relative;
+  right: 410px;
+  top: 140px;
+}
+#signup-college{
+  position: relative;
+  right: 612px;
+  top: 200px;
+}
+#signup-submit{
+  position: relative;
+  background-color: rgba(0, 0, 255, 1);
+  top: 140px;
+  right: 205px;
+  color: rgba(255, 255, 255, 1);
+}
+#already-user{
+  position: relative;
+  left: 300px;
+  background-color: rgba(255, 255, 255, 1);
+}
+/*positioning of login div */
+
+#login-div{
+  position: relative;
+  top: 200px;
+}
+.login-title{
+  position: relative;
+  left: 100px;
+}
+#login-username{
+  position: relative;
+  left: 100px;
+}
+#login-password{
+  position: relative;
+  left: -105px;
+  top: 50px;
+}
+#login-submit{
+  position: relative;
+  right: 310px;
+  top: 100px;
+  background-color: rgba(255, 255, 255, 1);
+  color: rgba(0, 0, 255, 1);
+}
+/* ATTENTION create account button belongs to the logged in div */
+
+/*positioning of textbook div */
+#book-form{
+  position: relative;
+  top: 300px;
 }
 *,
 *:before,
@@ -67,6 +133,7 @@ input,
 select,
 textarea {
   margin: 0;
+  width: 200px;
 }
 textarea {
   overflow: auto;
