@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title><%= title %></title>
+  <link rel="stylesheet" href="./css/kube.css">
   <link rel="stylesheet" href="./css/styles.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js" charset="utf-8"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
@@ -15,7 +16,7 @@
   </script>
 
   <script id="book-template" type="text/x-handlebars-template">
-    <h1>{{ISBN:0201558025}}</h1>
+    <h1>{{ISBN:0201558025.bib_key}}</h1>
     <!-- <h1>{{results.[0].artistName}}</h1>
       <ul>
       {{#each results}}
