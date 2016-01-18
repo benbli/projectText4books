@@ -62,8 +62,8 @@ function login(username, password, callback) {
     },
     success: function(data){
       $.cookie('token', data.token);
-      console.log('data id: ', data.id);
-      setTextbookUserId(data.id);
+      var userId = data.id;
+      setTextbookUserId(userId);
     }
   });
 }
@@ -82,8 +82,6 @@ function setLoginFormHandler(){
 
     login(username, password, function(callback){
       setTextbookUserId(data);
-      // renderTextbookForm(username);
-      // console.log('login complete', data);
     });
   });
 }
@@ -126,10 +124,10 @@ function setTextbookFormHandler(textbookData, data){
     isbnField.val('');
 
     var userId = $(this).find('input[name="textbook-user-id"]').val();
-    console.log('user-id: ', userId);
+    // console.log('user-id: ', userId);
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
-    console.log(textbookData);
+    // console.log(textbookData);
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
@@ -152,6 +150,16 @@ function createTextbook(userId, textbookData, callback){
 }
 
 // Render Page:
+function getAllTextbooks(callback){
+  $.ajax({
+    url: '/api/users/' + userId + '/textbooks',
+    success: function(data){
+      var textbooks = data.textbooks || [];
+      callback(textbooks);
+      console.log("textbooks: ", textbooks);
+    }
+  })
+}
 
 function getAllUsers(callback){
   $.ajax({

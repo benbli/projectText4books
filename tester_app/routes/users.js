@@ -71,6 +71,13 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
+// Get all textbooks (by user)
+router.get('/:id/textbooks', function(req, res){
+  User.find({}, function(err, databaseTextbooks){
+    res.json({textbooks: databaseTextbooks});
+  });
+});
+
 
 // UPDATE the user's bio (going to add more bio information)
 router.patch ('/', function (req, res) {

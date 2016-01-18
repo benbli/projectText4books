@@ -52,8 +52,6 @@ app.use('/', index);
 var users = require('./routes/users');
 app.use('/api/users', users);
 
-var books = require('./routes/books');
-app.use('/api/books', books); 
 
 // ---------------------
 // ****** Listen! ******
