@@ -113,31 +113,43 @@ function setTextbookUserId(userId){
 };
 
 function setTextbookFormHandler(textbookData, data, callback){
-  $('body').on('submit', 'form#book-form', function(e){
+  $('body').on('submit', 'form#submit-book-form', function(e){
+  // $('body').on('click', '#submit-book', function(e){
     e.preventDefault();
 
-    var titleField = $(this).find('input[name="textbook-title"]');
-    var titleText = titleField.val();
-    titleField.val('');
+    // var titleField = $(this).find('input[name="textbook-title"]');
+    var titleText = $('#book-title').val();
+    var isbnText = $('#book-isbn').val();
+    var authorText = $('#book-author').val();
+    var imageText = $('#book-image').val();
+    var descriptionText = $('#book-description').val();
 
-    var conditionField = $(this).find('input[name="condition"]');
+    var conditionField = $('#condition');
     var conditionText = conditionField.val();
     conditionField.val('');
 
-    var isbnField = $(this).find('input[name="isbn"]');
-    var isbnText = isbnField.val();
-    isbnField.val('');
+    var professorField = $('#professor');
+    var professorText = professorField.val();
+    professorField.val('');
 
-    var setUserId = $(this).find('input[name="textbook-user-id"]').val($.cookie('user-id'));
-    var userId = setUserId.val()
-    console.log('user-id val: ' , userId);
+    textbookData = {
+      title: titleText,
+      isbn: isbnText,
+      author: authorText,
+      image: imageText,
+      description: descriptionText,
+      condition: conditionText,
+      professor: professorText
+    };
 
-    textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
+    console.log(textbookData);
 
     $('#modal-view').hide();
     $('body').css({
       background: 'red'
     })
+
+    debugger;
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
@@ -168,7 +180,7 @@ function searchGoogleAPI(){
     method: 'get',
     url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
     success: function(data){
-      console.log(data.items[0].volumeInfo.title);
+      // console.log(data.items[0].volumeInfo.industryIdentifiers[1].identifier);
       renderApiSearch(data);
     }
   })
@@ -185,8 +197,24 @@ function setApiSearchHandler(){
 
 function renderApiSearch(data){
   var modalBody = $('#search-results');
-  modalBody.append($('<h2 id = "search-title">').text(data.items[0].volumeInfo.title));
+  modalBody.append($('<h2 id = "book-title">').text(data.items[0].volumeInfo.title));
+  modalBody.append($('<h5 id = "book-isbn">').text('ISBN: ' + data.items[0].volumeInfo.industryIdentifiers[1].identifier));
   modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
+  for (var i = 0; i < data.items[0].volumeInfo.authors.length; i++) {
+    var author = data.items[0].volumeInfo.authors[i];
+    modalBody.append($('<h4 id = "book-author">').text(author));
+  };
+  modalBody.append($('<p id = "book-description">').append(data.items[0].volumeInfo.description));
+  renderBookInputs();
+}
+
+function renderBookInputs(){
+  var form = $('<form id = "submit-book-form">')
+  form.append($('<input type = text id = "condition" placeholder = "Book Condition">'));
+  form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
+  form.append($('<input type = text>').val($.cookie('user-id')));
+  form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
+  $('#search-results').append(form);
 }
 
 // Render Page:

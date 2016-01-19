@@ -8,6 +8,10 @@ var TextbookSchema = mongoose.Schema({
   isbn: { type: String },
   condition: { type: String },
   status: { type: String, default: 0 },
+  author: { type: String },
+  description: { type: String },
+  image: { type: String },
+  professor: { type: String }
 });
 
 var UserSchema = mongoose.Schema({
