@@ -150,6 +150,7 @@ function createTextbook(userId, textbookData, callback){
       console.log(userId);
       var textbook = data.textbook;
       callback(textbook);
+      console.log(textbook);
     }
   })
 }
@@ -177,11 +178,13 @@ function getAllUsers(callback){
   });
 }
 
-function renderTextbooks(textbooksArray){
-  var source = $("#users-template").html();  // Go find the template
+function renderTextbooks(textbook){
+  var source = $("#book-template").html();  // Go find the template
   var template = Handlebars.compile(source); // Create a template function
-  var context = {textbooks: textbooksArray};  // What data will i pass the template?
+  var context = {textbooks: textbook};  // What data will i pass the template?
   var textbookElement = template( context ); // Generate HTML
+  var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html(template(textbook));
   return textbookElement;
 }
 
@@ -214,6 +217,7 @@ function setUserLoginView(){
   }
 };
 
+<<<<<<< HEAD
 function showModal(){
   $('#start-modal').click(function(){
      console.log('clicked');
@@ -232,6 +236,8 @@ function hideModal(){
     })
   })
 }
+=======
+>>>>>>> a78d3b33fe84fb9310f1fd88acf10e144f745d91
 
 $(function(){
   setLoginFormHandler();

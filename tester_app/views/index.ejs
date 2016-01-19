@@ -11,18 +11,20 @@
   <script src="./js/scripts.js"></script>
   <script src="./js/book.js"></script>
 ​
-  <script id="users-template" class = "user-only" type="text/x-handlebars-template">
-    <h3> Hello {{ username }} of {{ college }}</h3>
-  </script>
+  <!-- <script id="users-template" type="text/x-handlebars-template">
+    <h3> textbooks:</h3>
+  </script> -->
 ​
   <script id="book-template" type="text/x-handlebars-template">
-    <h1></h1>
-    <!-- <h1>{{results.[0].artistName}}</h1>
+    <h1>textbks:</h1>
+    <h1>{{textbooks}}</h1>
       <ul>
-      {{#each results}}
-      <li>{{trackName}}</li>
+      {{#each textbooks}}
+      <li>{{title}}</li>
+      <li>{{condition}}</li>
+      <li>{{isbn}}</li>
       {{/each}}
-      </ul> -->
+      </ul>
   </script>
 ​
 </head>
@@ -60,6 +62,15 @@
 
   <!-- <section class = "user-only" id = "users">
 </section> -->
+
+
+
+​
+<div id="rendered-textbooks">
+
+</div>
+​
+​
 
 </body>
 </html>
