@@ -15,16 +15,25 @@
     <h3> textbooks:</h3>
   </script> -->
 ​
-  <script id="book-template" type="text/x-handlebars-template">
-    <h1>textbks:</h1>
-    <h1>{{textbooks}}</h1>
-      <ul>
-      {{#each textbooks}}
-      <li>{{title}}</li>
-      <li>{{condition}}</li>
-      <li>{{isbn}}</li>
+  <script id="textbook-template" type="text/x-handlebars-template">
+
+    <ul>
+      {{#each users}}
+      <h1>{{college}}</h1>
       {{/each}}
-      </ul>
+
+      {{#each users}}
+        {{#each textbooks}}
+
+          <li><h1>{{title}}</h1></li>
+          <li><h4>Condition: {{condition}}</h1></li>
+          <li><p>ISBN#: {{isbn}}</p></li>
+
+        {{/each}}
+      {{/each}}
+    </ul>
+
+
   </script>
 ​
 </head>
@@ -57,7 +66,7 @@
   ​ <div id="textbook-api">
     <h4 id="textbook-api-title">Textbook API</h4>
     <input id="textbook-input" type="text" name="textbook" placeholder="Enter textbook">
-    <input id="book-submit" type="submit" name="name" value="Show Me my book">
+    <input id="submit" type="submit" name="name" value="Show Me my book">
   </div>
 
   <!-- <section class = "user-only" id = "users">
@@ -65,10 +74,14 @@
 
 
 
-​
-<div id="rendered-textbooks">
 
+<div id="rendered-textbooks">
+  <blocks cols="4">
+    <div>
+    </div>
+  </blocks>
 </div>
+​
 ​
 ​
 
