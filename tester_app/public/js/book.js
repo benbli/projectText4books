@@ -7,8 +7,8 @@ function getBookApi() {
 
   $.ajax({
     crossDomain: true,
-    dataType: "jsonp",
-    url: "http://isbndb.com/api/v2/json/" + apiKey + "/book/" + query,
+    dataType: "json",
+    url: "http://isbndb.com/api/v2/json/ZWOQIN7L/book/biology?callback=?",
     method: "GET",
     success: function (data) {
       renderHandlebars(data);
