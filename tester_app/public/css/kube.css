@@ -5,7 +5,6 @@
 -----------------------------------------------------------------------------*/
 html {
   box-sizing: border-box;
-  position: fixed;
 }
 *,
 *:before,
@@ -68,7 +67,6 @@ input,
 select,
 textarea {
   margin: 0;
-  width: 200px;
 }
 textarea {
   overflow: auto;
