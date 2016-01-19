@@ -161,6 +161,33 @@ function createTextbook(userId, textbookData, callback){
   })
 }
 
+// Google Books API Search
+function searchGoogleAPI(){
+  var bookSearch = $('#isbn').val();
+  $.ajax({
+    method: 'get',
+    url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
+    success: function(data){
+      console.log(data.items[0].volumeInfo.title);
+      renderApiSearch(data);
+    }
+  })
+}
+
+function setApiSearchHandler(){
+  $('#isbn-submit').click(function(e){
+    e.preventDefault();
+
+    console.log('search!!!');
+    searchGoogleAPI();
+  })
+}
+
+function renderApiSearch(data){
+  var modal = $('#modal-view');
+  modal.append('<h2 id = "search-title">').text(data.items[0].volumeInfo.title);
+}
+
 // Render Page:
 function getAllTextbooks(callback){
   $.ajax({
@@ -254,4 +281,5 @@ $(function(){
   showModal();
   hideModal();
   setUserLoginView();
+  setApiSearchHandler();
 });
