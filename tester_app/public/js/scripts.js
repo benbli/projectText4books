@@ -184,8 +184,9 @@ function setApiSearchHandler(){
 }
 
 function renderApiSearch(data){
-  var modal = $('#modal-view');
-  modal.append('<h2 id = "search-title">').text(data.items[0].volumeInfo.title);
+  var modalBody = $('#search-results');
+  modalBody.append($('<h2 id = "search-title">').text(data.items[0].volumeInfo.title));
+  modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
 }
 
 // Render Page:
