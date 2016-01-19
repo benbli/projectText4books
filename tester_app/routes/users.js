@@ -71,13 +71,13 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
-
-// Get all textbooks (by user)
+// Get all textbooks for a user
 router.get('/:id/textbooks', function(req, res){
-  User.find({}, function(err, databaseTextbooks){
+  var userId = req.params.id;
+  User.findById(userId, function(err, databaseTextbooks){
     res.json({textbooks: databaseTextbooks});
-  });
-});
+  })
+})
 
 
 // UPDATE the user's bio (going to add more bio information)
