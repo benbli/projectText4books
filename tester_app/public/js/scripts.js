@@ -63,6 +63,7 @@ function login(username, password, callback) {
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       var userId = data.id;
+      setUserLoginView();
       // setTextbookUserId(userId);
       setTextbookFormHandler();
       // setTextbookFormHandler();
@@ -197,8 +198,10 @@ function updateView(){
     var textbookElement = renderTextbooks(textbooks);
     $('section#users').append(textbookElement);
   });
+};
 
 
+function setUserLoginView(){
   if($.cookie('token')){
     console.log('cookie is present!');
     $('.user-only').show();
@@ -208,7 +211,7 @@ function updateView(){
     $('.user-only').hide();
     $('.logged-out').show();
   }
-}
+};
 
 $(function(){
   setLoginFormHandler();
