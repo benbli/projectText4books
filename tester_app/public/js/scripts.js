@@ -63,7 +63,8 @@ function login(username, password, callback) {
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       var userId = data.id;
-      setTextbookUserId(userId);
+      // setTextbookUserId(userId);
+      setTextbookFormHandler();
     }
   });
 }
@@ -104,7 +105,7 @@ function toggleLogin(){
 }
 
 function setTextbookUserId(userId){
-  $('input[name="textbook-user-id"]').val(userId);
+  $('input[name="textbook-user-id"]').val('test');
 };
 
 function setTextbookFormHandler(textbookData, data){
@@ -210,7 +211,7 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();
-  setTextbookFormHandler();
+  // setTextbookFormHandler();
   updateView();
   toggleLogin();
 });

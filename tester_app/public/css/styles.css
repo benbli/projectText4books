@@ -7,10 +7,19 @@ body {
   border-radius: 50%;
 }
 
+
+
+
+
+
+
+
 /*positing of sign up div */
 #sign-up-div{
   position: relative;
-  left: 100px;
+  left: 50%;
+  /*margin: auto;*/
+  /*width: 100%; */
 }
 #signup-password{
   position: relative;
@@ -30,20 +39,32 @@ body {
 #signup-submit{
   position: relative;
   background-color: rgba(0, 0, 255, 1);
-  top: 250px;
-  right: 820px;
+  /*top: 80%;*/
+  top: 30px; 
+  right: 57.5%;
   color: rgba(255, 255, 255, 1);
 }
 #already-user{
   position: relative;
-  left: 300px;
+  left: -1px;
+  top: 225px;
   background-color: rgba(255, 255, 255, 1);
+  width: 200px;
 }
+
+
+
+
+
+
+
+
+
 /*positioning of login div */
 
-#login-div{
+#login-div{/*div*/
   position: relative;
-  top: 200px;
+  top: 300px;
 }
 .login-title{
   position: relative;
@@ -67,55 +88,32 @@ body {
 }
 #create-account{
   position: relative;
-  top: 100px;
+  top: 80px;
   left: 100px;
+  width: 200px;
 }
 /* ATTENTION create account button belongs to the logged in div */
 
 /*positioning of textbook div */
-#textbook-api{
+#textbook-api{ /*div */
   position: relative;
   left: 100px;
+  top: 350px;
 }
 /*enter textbook api, first html element tag */
-#textbook{
+#textbook-api-title{
   position: relative;
-  top: 250px;
+  top: 5px;
 }
 #input{
   position: relative;
   top: 250px;
 }
-#submit{
+#book-submit{
   position: relative;
-  top: 300px;
-  right: 235px;
+  top: 30px;
+  right: 240px;
 }
-
-
-
-/*textbook condition */
-#book-form{
-  position: relative;
-  top: 500px;
-  left: 100px;
-}
-#textbook-condition{
-  position: relative;
-  top: 60px;
-  right: 205px;
-}
-#textbook-isbn{
-  position: relative;
-  top: 110px;
-  right: 410px;
-}
-#condition-submit{
-  position: relative;
-  top: 100px;
-  right: 450px;
-}
-
 
 
 /*form email, old password, new password etc...*/
@@ -133,13 +131,36 @@ body {
   position: relative;
   top: 150px;
 }
-#submit-my-book{
+#book-submit{
   position: relative;
-  top: 300px;
+  top: 40px;
   right: 240px;
 }
 
 .info{
   position: relative;
   top: 500px;
+}
+
+
+/*textbook condition */
+#book-form{/*div*/
+  position: relative;
+  top: 650px;
+  left: 100px;
+}
+#textbook-condition{
+  position: relative;
+  top: 60px;
+  right: 205px;
+}
+#textbook-isbn{
+  position: relative;
+  top: 120px;
+  right: 410px;
+}
+#condition-submit{
+  position: relative;
+  top: 160px;
+  right: 690px;
 }
