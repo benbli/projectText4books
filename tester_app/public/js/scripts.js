@@ -61,6 +61,7 @@ function login(username, password, callback) {
     },
     success: function(data){
       $.cookie('token', data.token);
+      $.cookie('user-id', data.id);
       var userId = data.id;
       setTextbookUserId(userId);
     }
