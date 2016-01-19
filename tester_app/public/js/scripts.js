@@ -1,6 +1,5 @@
 
 // Create users:
-
 function createUser(userData, callback){
   $.ajax({
     method: 'post',
@@ -110,6 +109,7 @@ function setTextbookUserId(userId){
 function setTextbookFormHandler(textbookData, data){
   $('body').on('submit', 'form#book-form', function(e){
     e.preventDefault();
+    console.log(data);
 
     var titleField = $(this).find('input[name="textbook-title"]');
     var titleText = titleField.val();
@@ -124,10 +124,8 @@ function setTextbookFormHandler(textbookData, data){
     isbnField.val('');
 
     var userId = $(this).find('input[name="textbook-user-id"]').val();
-    // console.log('user-id: ', userId);
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
-    // console.log(textbookData);
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
