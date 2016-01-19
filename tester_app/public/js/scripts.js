@@ -65,7 +65,7 @@ function login(username, password, callback) {
       var userId = data.id;
       setUserLoginView();
       // setTextbookUserId(userId);
-      setTextbookFormHandler();
+      // setTextbookFormHandler();
       // setTextbookFormHandler();
     }
   });
@@ -118,11 +118,11 @@ function setTextbookFormHandler(textbookData, data, callback){
     e.preventDefault();
 
     // var titleField = $(this).find('input[name="textbook-title"]');
-    var titleText = $('#book-title').val();
-    var isbnText = $('#book-isbn').val();
-    var authorText = $('#book-author').val();
-    var imageText = $('#book-image').val();
-    var descriptionText = $('#book-description').val();
+    var titleText = $('#book-title').text();
+    var isbnText = $('#book-isbn').text();
+    var authorText = $('#book-author').text();
+    var imageText = $('#book-image').attr('src');
+    var descriptionText = $('#book-description').text();
 
     var conditionField = $('#condition');
     var conditionText = conditionField.val();
@@ -131,6 +131,8 @@ function setTextbookFormHandler(textbookData, data, callback){
     var professorField = $('#professor');
     var professorText = professorField.val();
     professorField.val('');
+
+    var userId = $('#submit-user-id').val();
 
     textbookData = {
       title: titleText,
@@ -212,7 +214,7 @@ function renderBookInputs(){
   var form = $('<form id = "submit-book-form">')
   form.append($('<input type = text id = "condition" placeholder = "Book Condition">'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
-  form.append($('<input type = text>').val($.cookie('user-id')));
+  form.append($('<input type = text id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
   $('#search-results').append(form);
 }
@@ -304,7 +306,7 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();
-  // setTextbookFormHandler();
+  setTextbookFormHandler();
   updateView();
   toggleLogin();
   showModal();
