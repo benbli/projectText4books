@@ -62,11 +62,11 @@ function login(username, password, callback) {
     success: function(data){
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
+      console.log('data: ', data);
+      $.cookie('username', data.username);
+      $.cookie('college', data.college);
       var userId = data.id;
       setUserLoginView();
-      // setTextbookUserId(userId);
-      // setTextbookFormHandler();
-      // setTextbookFormHandler();
     }
   });
 }
@@ -84,7 +84,6 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(callback){
-      // setTextbookUserId(data);
     });
   });
 }
@@ -114,10 +113,8 @@ function setTextbookUserId(userId){
 
 function setTextbookFormHandler(textbookData, data, callback){
   $('body').on('submit', 'form#submit-book-form', function(e){
-  // $('body').on('click', '#submit-book', function(e){
     e.preventDefault();
 
-    // var titleField = $(this).find('input[name="textbook-title"]');
     var titleText = $('#book-title').text();
     var isbnText = $('#book-isbn').text();
     var authorText = $('#book-author').text();
@@ -182,7 +179,6 @@ function searchGoogleAPI(){
     method: 'get',
     url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
     success: function(data){
-      // console.log(data.items[0].volumeInfo.industryIdentifiers[1].identifier);
       renderApiSearch(data);
     }
   })
