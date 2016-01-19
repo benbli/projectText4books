@@ -32,7 +32,7 @@ router.post('/authenticate', function(req, res){      // POST to /api/users/auth
     databaseUser.authenticate(passwordTry, function(err, isMatch){
       if(isMatch){
         databaseUser.setToken(function(){
-          res.json({id: databaseUser.id, description: "Correct Password!!!", token: databaseUser.token });  // send token as json
+          res.json({username: databaseUser.username, college: databaseUser.college, id: databaseUser.id, description: "Correct Password!!!", token: databaseUser.token });  // send token as json
         });
       } else {
         res.json({description: "Sorry, wrong passwordddd", status: 302});
@@ -51,6 +51,12 @@ router.delete('/', function(req, res){
   });
 });
 
+// Delete User
+// router.delete('/:id', function(req, res){
+//   var userId = req.body.id;
+//   User.findOneAndRemove(userId);
+// })
+
 // Create a textbook
 router.post('/:id/textbooks', function(req, res){
   var textbookBody = req.body.textbook || {};
@@ -65,13 +71,13 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
-
-// Get all textbooks (by user)
+// Get all textbooks for a single user
 router.get('/:id/textbooks', function(req, res){
-  User.find({}, function(err, databaseTextbooks){
+  var userId = req.params.id;
+  User.findById(userId, function(err, databaseTextbooks){
     res.json({textbooks: databaseTextbooks});
-  });
-});
+  })
+})
 
 
 // UPDATE the user's bio (going to add more bio information)

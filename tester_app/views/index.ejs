@@ -1,60 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="./css/kube.css">
-  <link rel="stylesheet" href="./css/styles.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="./js/scripts.js"></script>
-  <script src="./js/book.js"></script>
-​
-  <!-- <script id="users-template" type="text/x-handlebars-template">
-    <h3> textbooks:</h3>
-  </script> -->
+  <% include ./partials/head %>
 ​
   <script id="textbook-template" type="text/x-handlebars-template">
-
     <ul>
       {{#each users}}
-      <h1>{{college}}</h1>
-      {{/each}}
-
-      {{#each users}}
-        {{#each textbooks}}
-
-          <li><h1>{{title}}</h1></li>
-          <li><h4>Condition: {{condition}}</h1></li>
-          <li><p>ISBN#: {{isbn}}</p></li>
-
-        {{/each}}
+          {{#each textbooks}}
+          <a href="#" class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
+            <li><h3 class="book-title">{{title}}</h3></li>
+            <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
+            <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
+            <li><p class="book-author">author(s): {{author}}</p></li>
+          </a>
+          {{/each}}
       {{/each}}
     </ul>
-
-
   </script>
 ​
 </head>
-​
 <body>
-  <!-- <a href="/sell">Sell your Textbook</a> -->
+
+  <div class="container">
+
+    <% include ./partials/header %>
+
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
-  <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Your Textbook</button>
+  <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
   <% include ./partials/userForms %>
 ​
   <div id="modal-view">
     <button id = "exit-modal" type="button" name="button">X</button>
     <% include ./partials/list-book-form %>
-    <!-- <form id = "book-form" action="index.html" method="post">
-      <h3>Textbook Information</h3>
-      <input id="textbook-title" type="text" name="textbook-title" placeholder = "Textbook Title">
-      <input id="textbook-condition" type="text" name="condition" placeholder = "Textbook Condition">
-      <input id="textbook-isbn" type="text" name="isbn" placeholder = "Textbook ISBN">
-      <input type="hidden" id = "textbook-user-id" name="textbook-user-id" placeholder = "user-id test" value="">
-      <input id="condition-submit" type="submit">
-    </form> -->
+    <div id = "search-results">
+    </div>
   </div>
   <!-- ​ <div id="textbook-api">
       <h4 id="textbook">Textbook API here 1</h4>
@@ -63,27 +42,15 @@
   <h4 id="textbook-two">Textbook API here 2</h4>
   <input id="input-two" type="text" name="textbook" placeholder="Enter textbook 2"> -->
 
-  ​ <div id="textbook-api">
-    <h4 id="textbook-api-title">Textbook API</h4>
-    <input id="textbook-input" type="text" name="textbook" placeholder="Enter textbook">
-    <input id="submit" type="submit" name="name" value="Show Me my book">
-  </div>
+
 
   <!-- <section class = "user-only" id = "users">
 </section> -->
 
 
-
-
-<div id="rendered-textbooks">
-  <blocks cols="4">
-    <div>
-    </div>
-  </blocks>
-</div>
-​
-​
-​
-
+  <div id="rendered-textbooks" class="user-only">
+  </div>
+  ​​
+  </div>
 </body>
 </html>

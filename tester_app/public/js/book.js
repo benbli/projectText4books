@@ -1,6 +1,4 @@
-console.log("SHOW ME THE MONEYS");
-
-//ADD WHAT YOU NEED TO TO THIS FILE IN ORDER TO USE HANDELBARS
+console.log("books scripts loaded");
 
 
 function renderHandlebars(data) {
@@ -30,7 +28,7 @@ console.log("this is your query: "+ query);
 $(function () {
 
   getData();
-  
+
   $("#submit").click(function(){
   });
 // renderHandlebars();

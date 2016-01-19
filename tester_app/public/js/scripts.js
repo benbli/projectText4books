@@ -62,11 +62,11 @@ function login(username, password, callback) {
     success: function(data){
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
+      console.log('data: ', data);
+      $.cookie('username', data.username);
+      $.cookie('college', data.college);
       var userId = data.id;
       setUserLoginView();
-      // setTextbookUserId(userId);
-      setTextbookFormHandler();
-      // setTextbookFormHandler();
     }
   });
 }
@@ -84,7 +84,6 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(callback){
-      // setTextbookUserId(data);
     });
   });
 }
@@ -113,31 +112,43 @@ function setTextbookUserId(userId){
 };
 
 function setTextbookFormHandler(textbookData, data, callback){
-  $('body').on('submit', 'form#book-form', function(e){
+  $('body').on('submit', 'form#submit-book-form', function(e){
     e.preventDefault();
 
-    var titleField = $(this).find('input[name="textbook-title"]');
-    var titleText = titleField.val();
-    titleField.val('');
+    var titleText = $('#book-title').text();
+    var isbnText = $('#book-isbn').text();
+    var authorText = $('#book-author').text();
+    var imageText = $('#book-image').attr('src');
+    var descriptionText = $('#book-description').text();
 
-    var conditionField = $(this).find('input[name="condition"]');
+    var conditionField = $('#condition');
     var conditionText = conditionField.val();
     conditionField.val('');
 
-    var isbnField = $(this).find('input[name="isbn"]');
-    var isbnText = isbnField.val();
-    isbnField.val('');
+    var professorField = $('#professor');
+    var professorText = professorField.val();
+    professorField.val('');
 
-    var setUserId = $(this).find('input[name="textbook-user-id"]').val($.cookie('user-id'));
-    var userId = setUserId.val()
-    console.log('user-id val: ' , userId);
+    var userId = $('#submit-user-id').val();
 
-    textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
+    textbookData = {
+      title: titleText,
+      isbn: isbnText,
+      author: authorText,
+      image: imageText,
+      description: descriptionText,
+      condition: conditionText,
+      professor: professorText
+    };
+
+    console.log(textbookData);
 
     $('#modal-view').hide();
     $('body').css({
       background: 'red'
     })
+
+    debugger;
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
@@ -159,6 +170,49 @@ function createTextbook(userId, textbookData, callback){
       console.log(textbook);
     }
   })
+}
+
+// Google Books API Search
+function searchGoogleAPI(){
+  var bookSearch = $('#isbn').val();
+  $.ajax({
+    method: 'get',
+    url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
+    success: function(data){
+      renderApiSearch(data);
+    }
+  })
+}
+
+function setApiSearchHandler(){
+  $('#isbn-submit').click(function(e){
+    e.preventDefault();
+
+    console.log('search!!!');
+    searchGoogleAPI();
+  })
+}
+
+function renderApiSearch(data){
+  var modalBody = $('#search-results');
+  modalBody.append($('<h2 id = "book-title">').text(data.items[0].volumeInfo.title));
+  modalBody.append($('<h5 id = "book-isbn">').text('ISBN: ' + data.items[0].volumeInfo.industryIdentifiers[1].identifier));
+  modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
+  for (var i = 0; i < data.items[0].volumeInfo.authors.length; i++) {
+    var author = data.items[0].volumeInfo.authors[i];
+    modalBody.append($('<h4 id = "book-author">').text(author));
+  };
+  modalBody.append($('<p id = "book-description">').append(data.items[0].volumeInfo.description));
+  renderBookInputs();
+}
+
+function renderBookInputs(){
+  var form = $('<form id = "submit-book-form">')
+  form.append($('<input type = text id = "condition" placeholder = "Book Condition">'));
+  form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
+  form.append($('<input type = text id = "submit-user-id">').val($.cookie('user-id')));
+  form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
+  $('#search-results').append(form);
 }
 
 // Render Page:
@@ -248,10 +302,11 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();
-  // setTextbookFormHandler();
+  setTextbookFormHandler();
   updateView();
   toggleLogin();
   showModal();
   hideModal();
   setUserLoginView();
+  setApiSearchHandler();
 });
