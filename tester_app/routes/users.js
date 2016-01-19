@@ -60,9 +60,12 @@ router.delete('/', function(req, res){
 // Create a textbook
 router.post('/:id/textbooks', function(req, res){
   var textbookBody = req.body.textbook;
+  // var userId = req.body.id;
+  console.log('body', req.body.id);
   textbookBody.username = req.user.username;
   // console.log();
   var userId = req.params.id;
+  console.log('params: ', userId);
   User.findById(userId, function(err, databaseUser){
     var textbookNumber = databaseUser.textbooks.push(textbookBody);
     databaseUser.save(function(err){
