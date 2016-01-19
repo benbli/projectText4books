@@ -53,11 +53,11 @@ app.use('/', index);
 var users = require('./routes/users');
 app.use('/api/users', users);
 
-// <<<<<<< 3242ee623eeffe6b23e288a1b8a496f298c37126
-// =======
+
 var books = require('./routes/books');
 app.use('/api/books', books);
-// >>>>>>> almost working book api
+
+
 
 // ---------------------
 // ****** Listen! ******
