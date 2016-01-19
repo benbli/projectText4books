@@ -97,7 +97,7 @@ body {
 /*textbook condition */
 #book-form{
   position: relative;
-  top: 600px;
+  top: 500px;
   left: 100px;
 }
 #textbook-condition{
@@ -107,13 +107,13 @@ body {
 }
 #textbook-isbn{
   position: relative;
-  top: 125px;
+  top: 110px;
   right: 410px;
 }
 #condition-submit{
   position: relative;
   top: 100px;
-  right: 450px; 
+  right: 450px;
 }
 
 
@@ -121,7 +121,7 @@ body {
 /*form email, old password, new password etc...*/
 .form-edit-profile{
   position: relative;
-  top: 100px;
+  top: 200px;
   left: 100px;
 }
 /*enter textbook api, second html element tag */
@@ -135,7 +135,7 @@ body {
 }
 #submit-my-book{
   position: relative;
-  top: 200px;
+  top: 300px;
   right: 240px;
 }
 
