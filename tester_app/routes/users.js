@@ -71,7 +71,7 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
-// Get all textbooks for a user
+// Get all textbooks for a single user
 router.get('/:id/textbooks', function(req, res){
   var userId = req.params.id;
   User.findById(userId, function(err, databaseTextbooks){
