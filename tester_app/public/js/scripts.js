@@ -92,6 +92,7 @@ function setLoginFormHandler(){
 function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
+    $.removeCookie('user-id');
     setUserLoginView();
   });
 }
@@ -133,7 +134,11 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
 
-    hideModal();
+    $('#modal-view').hide();
+    $('body').css({
+      background: 'red'
+    })
+
     createTextbook(userId, textbookData, function(textbook){
       updateView();
     })
@@ -218,6 +223,7 @@ function setUserLoginView(){
   }
 };
 
+
 function showModal(){
   $('#start-modal').click(function(){
      console.log('clicked');
@@ -236,6 +242,7 @@ function hideModal(){
     })
   })
 }
+
 
 $(function(){
   setLoginFormHandler();

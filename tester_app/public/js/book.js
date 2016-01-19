@@ -1,38 +1,38 @@
+console.log("SHOW ME THE MONEYS");
+
+//ADD WHAT YOU NEED TO TO THIS FILE IN ORDER TO USE HANDELBARS
 
 
-function getBookApi() {
-  var query = $('input[name="textbook"]').val();
-  var apiKey = "ZWOQIN7L";
-  console.log('this is your search query: ' + query);
+function renderHandlebars(data) {
+  var source = $('#textbook-template').html();
+  var template = Handlebars.compile(source);
+
+  var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html(template(data));
+  console.log(data);
+}
+
+function getData(){
+
+// HELP. My AJAX call to the iTunes API doesn't seem to work, please fix it!
+var query = $('#textbook-input').val();
+console.log("this is your query: "+ query);
 
   $.ajax({
-    method: "GET",
-    crossDomain: true,
-    url: "http://isbndb.com/api/v2/json/ZWOQIN7L/book/" + query,
-    dataType: "jsonp",
-    jsonp: false,
-    success: function (data) {
-      alert(data);
+    url: "api/users",
+    method: 'get',
+    success: function(data){
+      renderHandlebars(data);
     }
   });
 }
 
-function renderTextBookHandlebars(textbooks) {
-  var source = $('#book-template').html;
-  var template = Handlebars.compile(source);
-
-  var $resultsPlaceholder = $('#rendered-textbooks');
-  $resultsPlaceholder.html(template(textbooks));
-  console.log(textbooks);
-}
-
-
-
-
 $(function () {
 
+  getData();
+  
   $("#submit").click(function(){
-    getBookApi();
   });
+// renderHandlebars();
 
 });
