@@ -61,6 +61,7 @@ function login(username, password, callback) {
     },
     success: function(data){
       $.cookie('token', data.token);
+      $.cookie('user-id', data.id);
       var userId = data.id;
       setTextbookUserId(userId);
     }
@@ -109,7 +110,6 @@ function setTextbookUserId(userId){
 function setTextbookFormHandler(textbookData, data){
   $('body').on('submit', 'form#book-form', function(e){
     e.preventDefault();
-    console.log(data);
 
     var titleField = $(this).find('input[name="textbook-title"]');
     var titleText = titleField.val();
@@ -135,6 +135,7 @@ function setTextbookFormHandler(textbookData, data){
 
 function createTextbook(userId, textbookData, callback){
   callback = callback || function(){};
+  // console.log();
   $.ajax({
     method: 'post',
     url: '/api/users/' + userId + '/textbooks',

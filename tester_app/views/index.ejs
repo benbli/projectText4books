@@ -16,7 +16,7 @@
   </script>
 ​
   <script id="book-template" type="text/x-handlebars-template">
-    <h1></h1>
+    <h1>{{ISBN:0201558025.bib_key}}</h1>
     <!-- <h1>{{results.[0].artistName}}</h1>
       <ul>
       {{#each results}}
@@ -28,9 +28,10 @@
 </head>
 ​
 <body>
-  <a href="./sell"> Sell a Textbook </a>
+  <a href="/sell">Sell your Textbook</a>
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
   <% include ./partials/userForms %>
+
   <% include ./partials/list-book-form %>
   ​ <div id="textbook-api">
       <h4 id="textbook">Textbook API here 1</h4>
@@ -39,8 +40,28 @@
   <h4 id="textbook-two">Textbook API here 2</h4>
   <input id="input-two" type="text" name="textbook" placeholder="Enter textbook 2">
 
+
+  <% include ./partials/list-book-form %>
+​
+  <h4>Textbook API</h4>
+  <input id="input" type="text" name="textbook" placeholder="Enter textbook">
+  <input id="submit" type="submit" name="name" value="Show Me my book">
+​
+  <% include ./partials/list-book-form %>
+  ​ <div id="textbook-api">
+      <h4 id="textbook">Textbook API</h4>
+      <input id="input" type="text" name="textbook" placeholder="Enter textbook">
+
+
+​
+  <h4>Textbook API</h4>
+  <input id="input" type="text" name="textbook" placeholder="Enter textbook">
+
+
+
       <input id="submit-my-book" type="submit" name="name" value="Show Me my book">
   ​ </div>
+
   <div id="rendered-textbooks">
 ​
   </div>
