@@ -21,11 +21,13 @@
     <ul>
       {{#each users}}
           {{#each textbooks}}
-          <div class="listed-books">
+          <a href="#" class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
             <li><h3 class="book-title">{{title}}</h3></li>
             <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
             <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
-          </div>
+            <li><p class="book-author">author(s): {{author}}</p></li>
+
+          </a>
           {{/each}}
       {{/each}}
     </ul>
@@ -36,6 +38,7 @@
 </head>
 ​
 <body>
+  <div class="container">
   <!-- <a href="/sell">Sell your Textbook</a> -->
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
   <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
@@ -68,6 +71,6 @@
 ​
 ​
 ​
-
+</div>
 </body>
 </html>

@@ -10,9 +10,10 @@ li {
 }
 .listed-books {
   width: 220px;
-  height: 320px;
+  height: 280px;
   display: inline-block;
   background-color: #858383;
   padding: 25px;
   margin: 0px 30px 60px 0px;
+  overflow: scroll;
 }
