@@ -11,18 +11,20 @@
   <script src="./js/scripts.js"></script>
   <script src="./js/book.js"></script>
 ​
-  <script id="users-template" class = "user-only" type="text/x-handlebars-template">
-    <h3> Hello {{ username }} of {{ college }}</h3>
-  </script>
+  <!-- <script id="users-template" type="text/x-handlebars-template">
+    <h3> textbooks:</h3>
+  </script> -->
 ​
   <script id="book-template" type="text/x-handlebars-template">
-    <h1></h1>
-    <!-- <h1>{{results.[0].artistName}}</h1>
+    <h1>textbks:</h1>
+    <h1>{{textbooks}}</h1>
       <ul>
-      {{#each results}}
-      <li>{{trackName}}</li>
+      {{#each textbooks}}
+      <li>{{title}}</li>
+      <li>{{condition}}</li>
+      <li>{{isbn}}</li>
       {{/each}}
-      </ul> -->
+      </ul>
   </script>
 ​
 </head>
@@ -30,9 +32,21 @@
 <body>
   <!-- <a href="/sell">Sell your Textbook</a> -->
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
+  <button id = "start-modal" type="button" name="button"> Sell Your Textbook</button>
   <% include ./partials/userForms %>
 ​
-  <% include ./partials/list-book-form %>
+  <div id="modal-view">
+    <button id = "exit-modal" type="button" name="button">X</button>
+    <% include ./partials/list-book-form %>
+    <!-- <form id = "book-form" action="index.html" method="post">
+      <h3>Textbook Information</h3>
+      <input id="textbook-title" type="text" name="textbook-title" placeholder = "Textbook Title">
+      <input id="textbook-condition" type="text" name="condition" placeholder = "Textbook Condition">
+      <input id="textbook-isbn" type="text" name="isbn" placeholder = "Textbook ISBN">
+      <input type="hidden" id = "textbook-user-id" name="textbook-user-id" placeholder = "user-id test" value="">
+      <input id="condition-submit" type="submit">
+    </form> -->
+  </div>
   <!-- ​ <div id="textbook-api">
       <h4 id="textbook">Textbook API here 1</h4>
       <input id="input" type="text" name="textbook" placeholder="Enter textbook 1">
@@ -48,6 +62,15 @@
 
   <!-- <section class = "user-only" id = "users">
 </section> -->
+
+
+
+​
+<div id="rendered-textbooks">
+
+</div>
+​
+​
 
 </body>
 </html>

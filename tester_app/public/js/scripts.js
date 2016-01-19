@@ -63,6 +63,7 @@ function login(username, password, callback) {
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       var userId = data.id;
+      setUserLoginView();
       // setTextbookUserId(userId);
       setTextbookFormHandler();
       // setTextbookFormHandler();
@@ -91,6 +92,7 @@ function setLoginFormHandler(){
 function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
+    setUserLoginView();
   });
 }
 
@@ -131,6 +133,7 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
 
+    hideModal();
     createTextbook(userId, textbookData, function(textbook){
       updateView();
     })
@@ -148,6 +151,7 @@ function createTextbook(userId, textbookData, callback){
       console.log(userId);
       var textbook = data.textbook;
       callback(textbook);
+      console.log(textbook);
     }
   })
 }
@@ -175,11 +179,13 @@ function getAllUsers(callback){
   });
 }
 
-function renderTextbooks(textbooksArray){
-  var source = $("#users-template").html();  // Go find the template
+function renderTextbooks(textbook){
+  var source = $("#book-template").html();  // Go find the template
   var template = Handlebars.compile(source); // Create a template function
-  var context = {textbooks: textbooksArray};  // What data will i pass the template?
+  var context = {textbooks: textbook};  // What data will i pass the template?
   var textbookElement = template( context ); // Generate HTML
+  var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html(template(textbook));
   return textbookElement;
 }
 
@@ -197,8 +203,10 @@ function updateView(){
     var textbookElement = renderTextbooks(textbooks);
     $('section#users').append(textbookElement);
   });
+};
 
 
+function setUserLoginView(){
   if($.cookie('token')){
     console.log('cookie is present!');
     $('.user-only').show();
@@ -208,6 +216,25 @@ function updateView(){
     $('.user-only').hide();
     $('.logged-out').show();
   }
+};
+
+function showModal(){
+  $('#start-modal').click(function(){
+     console.log('clicked');
+     $('#modal-view').toggle();
+     $('body').css({
+       background: 'rgb(125, 34, 34)'
+     })
+  });
+}
+
+function hideModal(){
+  $('#exit-modal').click(function(){
+    $('#modal-view').hide();
+    $('body').css({
+      background: 'red'
+    })
+  })
 }
 
 $(function(){
@@ -217,4 +244,7 @@ $(function(){
   // setTextbookFormHandler();
   updateView();
   toggleLogin();
+  showModal();
+  hideModal();
+  setUserLoginView();
 });

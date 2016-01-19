@@ -40,8 +40,13 @@ body {
   position: relative;
   background-color: rgba(0, 0, 255, 1);
   /*top: 80%;*/
+<<<<<<< HEAD
   top: 240px;
   right: 80.5%;
+=======
+  top: 30px;
+  right: 57.5%;
+>>>>>>> ca1b34d9d614d63a3e6eca08989afcfe9e4ce93e
   color: rgba(255, 255, 255, 1);
 }
 #already-user{
@@ -146,8 +151,8 @@ body {
 /*textbook condition */
 #book-form{/*div*/
   position: relative;
-  top: 650px;
-  left: 100px;
+  top: 50px;
+  left: 35%;
 }
 #textbook-condition{
   position: relative;
@@ -163,4 +168,22 @@ body {
   position: relative;
   top: 160px;
   right: 690px;
+}
+
+
+/*Modal Views*/
+#modal-view {
+  border: 1px solid black;
+  z-index: 1;
+  background: white;
+  width: 125%;
+  height: 400px;
+  margin-left: 5%;
+  margin-top: 100px;
+  display: none;
+  overflow: scroll;
+}
+
+#exit-modal {
+  margin-left: 90%;
 }
