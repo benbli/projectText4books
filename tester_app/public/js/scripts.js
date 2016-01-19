@@ -92,6 +92,7 @@ function setLoginFormHandler(){
 function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
+    setUserLoginView();
   });
 }
 
@@ -217,7 +218,6 @@ function setUserLoginView(){
   }
 };
 
-<<<<<<< HEAD
 function showModal(){
   $('#start-modal').click(function(){
      console.log('clicked');
@@ -236,8 +236,6 @@ function hideModal(){
     })
   })
 }
-=======
->>>>>>> a78d3b33fe84fb9310f1fd88acf10e144f745d91
 
 $(function(){
   setLoginFormHandler();
@@ -248,4 +246,5 @@ $(function(){
   toggleLogin();
   showModal();
   hideModal();
+  setUserLoginView();
 });
