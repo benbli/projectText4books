@@ -11,6 +11,10 @@ router.get('/', function(req, res){
   res.render('index', {title: 'text4books'});
 });
 
+router.get('/sell', function(req, res){
+  res.render('sell')
+});
+
 // ----------------------
 // ****** Exports! ******
 // ----------------------
