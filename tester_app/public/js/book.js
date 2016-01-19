@@ -8,8 +8,8 @@ function getBookApi() {
   $.ajax({
     method: "GET",
     crossDomain: true,
-    url: "http://isbndb.com/api/v2/json/ZWOQIN7L/book/biology?callback="+"?",
-    dataType: "json",
+    url: "http://isbndb.com/api/v2/json/ZWOQIN7L/book/" + query,
+    dataType: "jsonp",
     jsonp: false,
     success: function (data) {
       alert(data);
@@ -17,7 +17,14 @@ function getBookApi() {
   });
 }
 
+function renderTextBookHandlebars(textbooks) {
+  var source = $('#book-template').html;
+  var template = Handlebars.compile(source);
 
+  var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html(template(textbooks));
+  console.log(textbooks);
+}
 
 
 
@@ -27,7 +34,5 @@ $(function () {
   $("#submit").click(function(){
     getBookApi();
   });
-renderHandlebars();
-
 
 });
