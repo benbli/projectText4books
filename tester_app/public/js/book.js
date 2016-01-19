@@ -17,14 +17,7 @@ function getBookApi() {
   });
 }
 
-function renderHandlebars(data) {
-  var source = $('#book-template').html();
-  var template = Handlebars.compile(source);
 
-  var $resultsPlaceholder = $('#rendered-textbooks');
-  $resultsPlaceholder.html(template(data));
-  // console.log(data);
-}
 
 
 
