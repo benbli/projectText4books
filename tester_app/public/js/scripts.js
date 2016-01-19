@@ -132,6 +132,7 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
 
+    hideModal();
     createTextbook(userId, textbookData, function(textbook){
       updateView();
     })
@@ -213,6 +214,25 @@ function setUserLoginView(){
   }
 };
 
+function showModal(){
+  $('#start-modal').click(function(){
+     console.log('clicked');
+     $('#modal-view').toggle();
+     $('body').css({
+       background: 'rgb(125, 34, 34)'
+     })
+  });
+}
+
+function hideModal(){
+  $('#exit-modal').click(function(){
+    $('#modal-view').hide();
+    $('body').css({
+      background: 'red'
+    })
+  })
+}
+
 $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
@@ -220,4 +240,6 @@ $(function(){
   // setTextbookFormHandler();
   updateView();
   toggleLogin();
+  showModal();
+  hideModal();
 });
