@@ -22,8 +22,8 @@
       {{#each users}}
           {{#each textbooks}}
           <div class="listed-books">
-            <li><h1 class="book-title">{{title}}</h1></li>
-            <li><h4 class="book-condition">Condition: {{condition}}</h1></li>
+            <li><h3 class="book-title">{{title}}</h3></li>
+            <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
             <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
           </div>
           {{/each}}
@@ -38,7 +38,7 @@
 <body>
   <!-- <a href="/sell">Sell your Textbook</a> -->
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
-  <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Your Textbook</button>
+  <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
   <% include ./partials/userForms %>
 ​
   <div id="modal-view">
@@ -62,11 +62,8 @@
 
 
 
-<div id="rendered-textbooks">
-  <blocks cols="4">
-    <div>
-    </div>
-  </blocks>
+<div id="rendered-textbooks" class="user-only">
+
 </div>
 ​
 ​
