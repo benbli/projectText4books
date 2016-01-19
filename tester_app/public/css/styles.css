@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(255, 255, 255);
+  background-color: red;
 }
 .profile-avatar {
   height: 120px;
@@ -8,12 +8,16 @@ body {
 }
 
 
+
+
+
+
+
+
 /*positing of sign up div */
 #sign-up-div{
   position: relative;
   left: 50%;
-  /*margin: auto;*/
-  /*width: 100%; */
 }
 #signup-password{
   position: relative;
@@ -34,13 +38,10 @@ body {
   position: relative;
   background-color: rgba(0, 0, 255, 1);
   /*top: 80%;*/
-<<<<<<< HEAD
   top: 240px;
   right: 80.5%;
-=======
-  top: 30px;
-  right: 57.5%;
->>>>>>> ca1b34d9d614d63a3e6eca08989afcfe9e4ce93e
+  /*top: 30px;
+  right: 57.5%;*/
   color: rgba(255, 255, 255, 1);
 }
 #already-user{
@@ -56,14 +57,12 @@ body {
 
 
 
-
-
-
 /*positioning of login div */
 
 #login-div{/*div*/
   position: relative;
-  top: 300px;
+  /*top: 300px;*/
+  left: 69%;
 }
 .login-title{
   position: relative;
