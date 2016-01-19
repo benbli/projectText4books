@@ -148,7 +148,6 @@ function setTextbookFormHandler(textbookData, data, callback){
       background: 'red'
     })
 
-    debugger;
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
