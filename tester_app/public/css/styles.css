@@ -1,12 +1,145 @@
 body {
   background-color: red;
 }
-
-#sign-up-div {
-
-}
 .profile-avatar {
   height: 120px;
   width: 120px;
   border-radius: 50%;
+}
+
+/*positing of sign up div */
+#sign-up-div{
+  position: relative;
+  left: 100px;
+}
+#signup-password{
+  position: relative;
+  right: 205px;
+  top: 70px;
+}
+#signup-email{
+  position: relative;
+  right: 410px;
+  top: 140px;
+}
+#signup-college{
+  position: relative;
+  right: 612px;
+  top: 200px;
+}
+#signup-submit{
+  position: relative;
+  background-color: rgba(0, 0, 255, 1);
+  top: 250px;
+  right: 820px;
+  color: rgba(255, 255, 255, 1);
+}
+#already-user{
+  position: relative;
+  left: 300px;
+  background-color: rgba(255, 255, 255, 1);
+}
+/*positioning of login div */
+
+#login-div{
+  position: relative;
+  top: 200px;
+}
+.login-title{
+  position: relative;
+  left: 100px;
+}
+#login-username{
+  position: relative;
+  left: 100px;
+}
+#login-password{
+  position: relative;
+  left: -105px;
+  top: 50px;
+}
+#login-submit{
+  position: relative;
+  right: 310px;
+  top: 100px;
+  background-color: rgba(0, 0, 255, 1);
+  color: rgba(255, 255, 255, 1);
+}
+#create-account{
+  position: relative;
+  top: 100px;
+  left: 100px;
+}
+/* ATTENTION create account button belongs to the logged in div */
+
+/*positioning of textbook div */
+#textbook-api{
+  position: relative;
+  left: 100px;
+}
+/*enter textbook api, first html element tag */
+#textbook{
+  position: relative;
+  top: 250px;
+}
+#input{
+  position: relative;
+  top: 250px;
+}
+#submit{
+  position: relative;
+  top: 300px;
+  right: 235px;
+}
+
+
+
+/*textbook condition */
+#book-form{
+  position: relative;
+  top: 600px;
+  left: 100px;
+}
+#textbook-condition{
+  position: relative;
+  top: 60px;
+  right: 205px;
+}
+#textbook-isbn{
+  position: relative;
+  top: 125px;
+  right: 410px;
+}
+#condition-submit{
+  position: relative;
+  top: 100px;
+  right: 450px; 
+}
+
+
+
+/*form email, old password, new password etc...*/
+.form-edit-profile{
+  position: relative;
+  top: 100px;
+  left: 100px;
+}
+/*enter textbook api, second html element tag */
+#textbook-two{
+  position: relative;
+  top: 150px;
+}
+#input-two{
+  position: relative;
+  top: 150px;
+}
+#submit-my-book{
+  position: relative;
+  top: 200px;
+  right: 240px;
+}
+
+.info{
+  position: relative;
+  top: 500px;
 }
