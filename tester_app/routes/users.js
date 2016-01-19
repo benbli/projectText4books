@@ -9,12 +9,6 @@ router.get('/', function(req, res){
   });
 });
 
-// Get user by ID
-// router.get('/:id', function(req, res){
-//   User.findById({req.body.id}, function(err, databaseUser){
-//     res.json({ user: databaseUser })
-//   });
-// });
 
 // Create User
 router.post('/', function(req, res){
@@ -59,13 +53,10 @@ router.delete('/', function(req, res){
 
 // Create a textbook
 router.post('/:id/textbooks', function(req, res){
-  var textbookBody = req.body.textbook;
-  // var userId = req.body.id;
-  console.log('body', req.body.id);
-  textbookBody.username = req.user.username;
-  // console.log();
+  var textbookBody = req.body.textbook || {};
+  // textbookBody.id = req.user.id;
   var userId = req.params.id;
-  console.log('params: ', userId);
+  console.log('userId var: ', userId);
   User.findById(userId, function(err, databaseUser){
     var textbookNumber = databaseUser.textbooks.push(textbookBody);
     databaseUser.save(function(err){
@@ -73,6 +64,7 @@ router.post('/:id/textbooks', function(req, res){
     });
   });
 });
+
 
 // Get all textbooks (by user)
 router.get('/:id/textbooks', function(req, res){

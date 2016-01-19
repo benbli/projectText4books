@@ -64,7 +64,7 @@ function login(username, password, callback) {
       $.cookie('user-id', data.id);
       var userId = data.id;
       // setTextbookUserId(userId);
-      setTextbookFormHandler();
+      // setTextbookFormHandler();
     }
   });
 }
@@ -82,7 +82,7 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(callback){
-      setTextbookUserId(data);
+      // setTextbookUserId(data);
     });
   });
 }
@@ -104,11 +104,11 @@ function toggleLogin(){
   });
 }
 
-function setTextbookUserId(userId){
-  $('input[name="textbook-user-id"]').val('test');
-};
+// function setTextbookUserId(userId){
+//   $('input[name="textbook-user-id"]').val('test');
+// };
 
-function setTextbookFormHandler(textbookData, data){
+function setTextbookFormHandler(textbookData, data, callback){
   $('body').on('submit', 'form#book-form', function(e){
     e.preventDefault();
 
@@ -124,7 +124,9 @@ function setTextbookFormHandler(textbookData, data){
     var isbnText = isbnField.val();
     isbnField.val('');
 
-    var userId = $(this).find('input[name="textbook-user-id"]').val();
+    var setUserId = $(this).find('input[name="textbook-user-id"]').val($.cookie('user-id'));
+    var userId = setUserId.val()
+    console.log('user-id val: ' , userId);
 
     textbookData = { title: titleText, condition: conditionText, isbn: isbnText };
 
@@ -211,7 +213,7 @@ $(function(){
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();
-  // setTextbookFormHandler();
+  setTextbookFormHandler();
   updateView();
   toggleLogin();
 });
