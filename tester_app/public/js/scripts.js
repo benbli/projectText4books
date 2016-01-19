@@ -92,6 +92,7 @@ function setLoginFormHandler(){
 function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
+    setUserLoginView();
   });
 }
 
@@ -247,4 +248,5 @@ $(function(){
   toggleLogin();
   showModal();
   hideModal();
+  setUserLoginView();
 });
