@@ -30,8 +30,8 @@ html {
 #signup-submit{
   position: relative;
   background-color: rgba(0, 0, 255, 1);
-  top: 140px;
-  right: 205px;
+  top: 250px;
+  right: 820px;
   color: rgba(255, 255, 255, 1);
 }
 #already-user{
@@ -65,13 +65,52 @@ html {
   background-color: rgba(255, 255, 255, 1);
   color: rgba(0, 0, 255, 1);
 }
+#create-account{
+  position: relative;
+  top: 100px;
+  left: 100px;
+}
 /* ATTENTION create account button belongs to the logged in div */
 
 /*positioning of textbook div */
-#book-form{
+#textbook-api{
+  position: relative;
+  left: 100px;
+}
+#textbook{
+  position: relative;
+  top: 250px;
+}
+#input{
+  position: relative;
+  top: 250px;
+}
+#submit{
   position: relative;
   top: 300px;
+  right: 235px;
 }
+/*textbook condition */
+#book-form{
+  position: relative;
+  top: 500px;
+  left: 100px;
+}
+/*form email, old password, new password etc...*/
+.form-edit-profile{
+  position: relative;
+  top: 100px;
+  left: 100px; 
+}
+
+
+
+.info{
+  position: relative;
+  top: 500px;
+}
+
+
 *,
 *:before,
 *:after {
