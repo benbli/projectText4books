@@ -1,23 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title><%= title %></title>
-  <link rel="stylesheet" href="./css/kube.css">
-  <link rel="stylesheet" href="./css/styles.css">
-  <link rel="stylesheet" href="./css/book-listing.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js" charset="utf-8"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js"></script>
-  <script src="./js/scripts.js"></script>
-  <script src="./js/book.js"></script>
-​
-  <!-- <script id="users-template" type="text/x-handlebars-template">
-    <h3> textbooks:</h3>
-  </script> -->
+  <% include ./partials/head %>
 ​
   <script id="textbook-template" type="text/x-handlebars-template">
-
     <ul>
       {{#each users}}
           {{#each textbooks}}
@@ -26,20 +12,19 @@
             <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
             <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
             <li><p class="book-author">author(s): {{author}}</p></li>
-
           </a>
           {{/each}}
       {{/each}}
     </ul>
-
-
   </script>
 ​
 </head>
-​
 <body>
+
   <div class="container">
-  <!-- <a href="/sell">Sell your Textbook</a> -->
+
+    <% include ./partials/header %>
+
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
   <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
   <% include ./partials/userForms %>
@@ -63,14 +48,9 @@
 </section> -->
 
 
-
-
-<div id="rendered-textbooks" class="user-only">
-
-</div>
-​
-​
-​
-</div>
+  <div id="rendered-textbooks" class="user-only">
+  </div>
+  ​​
+  </div>
 </body>
 </html>
