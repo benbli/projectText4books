@@ -36,7 +36,9 @@ router.get('/', function(req, res){
 router.get('/:id', function(req, res){
   var textbookId = req.params.id;
   console.log('user id: ', textbookId);
-  User.findOne({'textbooks._id' : textbookId}, function(err, databaseTextbook){
+  User.findOne({'textbooks._id' : textbookId}, function(err, databaseUser){
+    var databaseTextbook = databaseUser.textbooks.id(textbookId);
+    console.log('textbook return: ', databaseTextbook);
     res.json(databaseTextbook)
   })
 })

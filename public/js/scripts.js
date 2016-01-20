@@ -298,7 +298,6 @@ function hideModal(){
   })
 }
 
-
 function renderHandlebars(data) {
   var source = $('#textbook-template').html();
   var template = Handlebars.compile(source);
@@ -320,6 +319,7 @@ function getData(){
     }
   });
 }
+
 
 $(function(){
   setLoginFormHandler();

@@ -6,6 +6,7 @@ function getCurrentUser(){
     method: 'get',
     url: '/api/users/' + userId,
     success: function(data){
+      console.log('whatttt: ', data);
       renderCurrentUser(data);
     }
   })
