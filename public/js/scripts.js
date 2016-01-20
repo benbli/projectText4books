@@ -145,7 +145,7 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     $('#modal-view').hide();
     $('body').css({
-      background: 'red'
+      background: 'white'
     })
 
 
@@ -163,6 +163,7 @@ function createTextbook(userId, textbookData, callback){
     url: '/api/users/' + userId + '/textbooks',
     data: {textbook: textbookData},
     success: function(data){
+      setUserLoginView();
       console.log(userId);
       var textbook = data.textbook;
       callback(textbook);
@@ -282,7 +283,7 @@ function showModal(){
      console.log('clicked');
      $('#modal-view').toggle();
      $('body').css({
-       background: 'rgb(125, 34, 34)'
+       background: 'rgb(180, 180, 180)'
      })
   });
 }
@@ -291,7 +292,7 @@ function hideModal(){
   $('#exit-modal').click(function(){
     $('#modal-view').hide();
     $('body').css({
-      background: 'red'
+      background: 'white'
     })
   })
 }

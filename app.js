@@ -57,7 +57,7 @@ var profile = require('./routes/profile');
 app.use('/profile', profile);
 
 var books = require('./routes/books');
-app.use('/api/books', books);
+app.use('/api/book', books);
 
 // ---------------------
 // ****** Listen! ******

@@ -3,6 +3,7 @@
 // ----------------------
 var express = require('express');
 var router = express.Router();
+var User = require('../models/user');
 
 // --------------------
 // ****** Route! ******
@@ -17,6 +18,13 @@ router.get('/sell', function(req, res){
 
 router.get('/profile', function(req, res){
   res.render('profile', {title: 'User Profile'})
+})
+
+router.get('/book/:id', function(req, res){
+  var textbookId = req.params.id;
+  User.findOne({'textbooks._id' : textbookId}, function(err, databaseTextbook){
+    res.render('book', {textbook : databaseTextbook})
+  })
 })
 
 // ----------------------

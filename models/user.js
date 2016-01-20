@@ -1,25 +1,14 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcryptjs');
 var crypto = require('crypto');
-
-
-var TextbookSchema = mongoose.Schema({
-  title: { type: String },
-  isbn: { type: String },
-  condition: { type: String },
-  status: { type: Number, default: 0 },
-  author: { type: String },
-  description: { type: String },
-  image: { type: String },
-  professor: { type: String }
-});
+var Book = require('./book');
 
 var UserSchema = mongoose.Schema({
   username: { type: String }, // NEED TO ADD REQUIRE
   password: { type: String }, // password_digest && NEED TO ADD REQUIRE
   college: { type: String },  // change this to bio schema so that we can put user's info all in one place
   email: { type: String },
-  textbooks: [TextbookSchema],
+  textbooks: [Book.schema],
   token: { type: String }  // crypto - API token based auth. A location to place the token
 });
 

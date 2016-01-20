@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Book = require('../models/book');
 var User = require('../models/user');
 
 // Get all users
@@ -78,6 +79,7 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
+<<<<<<< dc13c8e4aafda8c8e2354cb37c30a3416f98e767:routes/users.js
 // UPDATE the user's bio (going to add more bio information)
 router.patch ('/', function (req, res) {
   if(req.user){
@@ -88,5 +90,18 @@ router.patch ('/', function (req, res) {
     });
   }
 });
+=======
+
+// UPDATE the user's bio (going to add more bio information)
+// router.patch ('/', function (req, res) {
+//   if(req.user){
+//     req.user.bio = req.body.user.bio; // modify the user's bio
+//
+//     req.user.save(function (err, databaseUser) {
+//       res.json(databaseUser);
+//     });
+//   }
+// });
+>>>>>>> applies api/book route:tester_app/routes/users.js
 
 module.exports = router;
