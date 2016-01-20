@@ -79,7 +79,6 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
-<<<<<<< dc13c8e4aafda8c8e2354cb37c30a3416f98e767:routes/users.js
 // UPDATE the user's bio (going to add more bio information)
 router.patch ('/', function (req, res) {
   if(req.user){
@@ -90,7 +89,6 @@ router.patch ('/', function (req, res) {
     });
   }
 });
-=======
 
 // UPDATE the user's bio (going to add more bio information)
 // router.patch ('/', function (req, res) {
@@ -102,6 +100,5 @@ router.patch ('/', function (req, res) {
 //     });
 //   }
 // });
->>>>>>> applies api/book route:tester_app/routes/users.js
 
 module.exports = router;
