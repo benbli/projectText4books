@@ -1,17 +1,7 @@
 body {
   background-color: white;
+  height: 100%;
 }
-.profile-avatar {
-  height: 120px;
-  width: 120px;
-  border-radius: 50%;
-}
-
-
-
-
-
-
 
 
 /*positing of sign up div */
