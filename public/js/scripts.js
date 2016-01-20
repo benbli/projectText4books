@@ -229,7 +229,7 @@ function getAllTextbooks(callback){
 
 function getAllUsers(callback){
   $.ajax({
-    url: '/api/users',
+    url: '/api/users' ,
     success: function(data){
       var users = data.users || [];
       callback(users);
@@ -313,7 +313,7 @@ function getData(){
   console.log("this is your query: "+ query);
 
   $.ajax({
-    url: "api/users",
+    url: "api/users?college=" + $.cookie('college'),
     method: 'get',
     success: function(data){
       renderHandlebars(data);

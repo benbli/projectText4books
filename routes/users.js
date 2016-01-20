@@ -6,8 +6,11 @@ var User = require('../models/user');
 // Get all users
 router.get('/', function(req, res){
   User.find({}, function(err, databaseUsers){
-    res.json({users: databaseUsers});
-  });
+  User.find(req.query.college? {college: req.query.college} : {}, function(err, databaseUsers){
+    console.log(req.query)
+    res.json({users: databaseUsers})
+   })
+ })
 });
 
 // Get one user
