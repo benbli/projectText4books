@@ -7,7 +7,7 @@
     <ul>
       {{#each users}}
           {{#each textbooks}}
-          <a id = "{{id}}" href="/book/{{_id}}" class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
+          <a href="#{{_id}}" class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
             <li><h3 class="book-title">{{title}}</h3></li>
             <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
             <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
@@ -20,7 +20,6 @@
 </head>
 <body>
   <div class="container">
-
 
     <% include ./partials/header %>
 
@@ -51,8 +50,6 @@
 
   <div id="rendered-textbooks" class="user-only">
   </div>
-
-
 
   </div>
 </body>

@@ -1,7 +1,7 @@
 console.log('loaddddddddddd');
 
 function getOneTextbook(){
-  var textbookId;
+  var textbookId = window.location.hash.replace(/#/,'');
   $.ajax({
     method: 'get',
     url: '/api/book/' + textbookId,
@@ -10,3 +10,12 @@ function getOneTextbook(){
     }
   })
 }
+
+$(function(){
+
+  $('body').on('click', '.listed-books', function() {
+    console.log('click?');
+    getOneTextbook();
+  })
+
+})
