@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
   <% include ./partials/head %>
-​
+  ​
   <script id="textbook-template" type="text/x-handlebars-template">
     <ul>
       {{#each users}}
@@ -27,7 +28,7 @@
 
   <button class = "user-only" id = "logout" value = "Logout">Logout</button>
   <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
-  <button id = "user-profile" class = "user-only" type = "button" name = "button">User Profile</button>
+  <a href = '/profile' id = "user-profile" class = "btn user-only">User Profile</a>
   <% include ./partials/userForms %>
 ​
   <div id="modal-view">

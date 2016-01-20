@@ -9,6 +9,13 @@ router.get('/', function(req, res){
   });
 });
 
+// Get one user
+router.get('/:id', function(req, res){
+  var userId = req.params.id;
+  User.findById(userId, function(err, databaseUser){
+    res.json({users: databaseUser});
+  })
+})
 
 // Create User
 router.post('/', function(req, res){
@@ -70,15 +77,6 @@ router.post('/:id/textbooks', function(req, res){
     });
   });
 });
-
-// Get all textbooks for a single user
-router.get('/:id/textbooks', function(req, res){
-  var userId = req.params.id;
-  User.findById(userId, function(err, databaseTextbooks){
-    res.json({textbooks: databaseTextbooks});
-  })
-})
-
 
 // UPDATE the user's bio (going to add more bio information)
 router.patch ('/', function (req, res) {

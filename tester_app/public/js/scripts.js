@@ -62,9 +62,9 @@ function login(username, password, callback) {
     success: function(data){
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
-      console.log('data: ', data);
       $.cookie('username', data.username);
       $.cookie('college', data.college);
+      $.cookie('email', data.email);
       var userId = data.id;
       setUserLoginView();
     }
