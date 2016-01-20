@@ -4,7 +4,8 @@ var User = require('../models/user');
 
 // Get all users
 router.get('/', function(req, res){
-  User.find({}, function(err, databaseUsers){
+  User.find(req.query.college? {college: req.query.college} : {}, function(err, databaseUsers){
+    console.log(req.query)
     res.json({users: databaseUsers});
   });
 });
@@ -78,15 +79,26 @@ router.post('/:id/textbooks', function(req, res){
   });
 });
 
-// UPDATE the user's bio (going to add more bio information)
-router.patch ('/', function (req, res) {
+// Update the textbook to sold
+router.put('/:id/textbooks/:id', function(req, res){
   if(req.user){
-    req.user.bio = req.body.user.bio; // modify the user's bio
+    req.user.textbooks.status;
 
-    req.user.save(function (err, databaseUser) {
-      res.json(databaseUser);
-    });
+    req.user.textbooks.save(function(err, databaseTextbook){
+      res.json(databaseTextbook);
+    })
   }
-});
+})
+
+// UPDATE the user's bio (going to add more bio information)
+// router.patch ('/', function (req, res) {
+//   if(req.user){
+//     req.user.bio = req.body.user.bio; // modify the user's bio
+//
+//     req.user.save(function (err, databaseUser) {
+//       res.json(databaseUser);
+//     });
+//   }
+// });
 
 module.exports = router;

@@ -66,6 +66,7 @@ function login(username, password, callback) {
       $.cookie('college', data.college);
       $.cookie('email', data.email);
       var userId = data.id;
+      // getData();
       setUserLoginView();
     }
   });
@@ -207,29 +208,30 @@ function renderApiSearch(data){
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">')
-  form.append($('<input type = text id = "condition" placeholder = "Book Condition">'));
+  form.append($('<select id = "condition"><option value = "new">New</option><option value = "like-new">Like New</option><option value ="used">Used</option> '));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
-  form.append($('<input type = text id = "submit-user-id">').val($.cookie('user-id')));
+  form.append($('<input type = hidden id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
   $('#search-results').append(form);
 }
 
 // Render Page:
-function getAllTextbooks(callback){
-  $.ajax({
-    url: '/api/users/' + userId + '/textbooks',
-    success: function(data){
-      var textbooks = data.textbooks || [];
-      callback(textbooks);
-      console.log("textbooks: ", textbooks);
-    }
-  })
-}
+// function getAllTextbooks(callback){
+//   $.ajax({
+//     url: '/api/users/' + userId + '/textbooks',
+//     success: function(data){
+//       var textbooks = data.textbooks || [];
+//       callback(textbooks);
+//       console.log("textbooks: ", textbooks);
+//     }
+//   })
+// }
 
 function getAllUsers(callback){
   $.ajax({
-    url: '/api/users',
+    url: '/api/users?college=' + $.cookie('college'),
     success: function(data){
+      console.log('college data: ', data);
       var users = data.users || [];
       callback(users);
       // console.log("users: " + users);
@@ -263,10 +265,32 @@ function updateView(){
   });
 };
 
+function renderHandlebars(data) {
+  var source = $('#textbook-template').html();
+  var template = Handlebars.compile(source);
+
+  var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html(template(data));
+  console.log(data);
+}
+
+function getData(){
+  var query = $('#textbook-input').val();
+  console.log("this is your query: "+ query);
+
+  $.ajax({
+    url: "api/users?college=" + $.cookie('college'),
+    method: 'get',
+    success: function(data){
+      renderHandlebars(data);
+    }
+  });
+}
 
 function setUserLoginView(){
   if($.cookie('token')){
     console.log('cookie is present!');
+    getData();
     $('.user-only').show();
     $('.logged-out').hide();
   } else {
