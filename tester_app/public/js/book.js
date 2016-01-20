@@ -11,10 +11,8 @@ function renderHandlebars(data) {
 }
 
 function getData(){
-
-// HELP. My AJAX call to the iTunes API doesn't seem to work, please fix it!
-var query = $('#textbook-input').val();
-console.log("this is your query: "+ query);
+  var query = $('#textbook-input').val();
+  console.log("this is your query: "+ query);
 
   $.ajax({
     url: "api/users",
@@ -25,12 +23,9 @@ console.log("this is your query: "+ query);
   });
 }
 
+
 $(function () {
 
   getData();
-
-  $("#submit").click(function(){
-  });
-// renderHandlebars();
 
 });
