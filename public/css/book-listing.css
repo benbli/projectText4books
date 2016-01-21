@@ -7,7 +7,7 @@
   height: 280px;
   display: inline-block;
   background-color: #858383;
-  padding: 25px;
+  /*padding: 25px;*/
   margin: 0px 25px 60px 0px;
   overflow: scroll;
   -webkit-box-shadow: 0 8px 6px -6px black;
