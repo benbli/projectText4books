@@ -41,11 +41,11 @@ function markTextbookAsSold(textbookId, textbookStatus){
   console.log('status: ', textbookStatus);
   console.log('id: ', textbookId);
   $.ajax({
-    method: 'put',
+    method: 'patch',
     url: '/api/books/' + textbookId,
     data: textbookStatus,
     success: function(data){
-      console.log('after marked: ', data);
+      console.log('on success data: ', data);
       // callback(data);
       renderCurrentUser(data);
     }

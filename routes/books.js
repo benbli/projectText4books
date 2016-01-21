@@ -47,12 +47,12 @@ router.get('/:id', function(req, res){
 
 
 // Update the textbook to sold
-router.put('/:id', function(req, res){
+router.patch('/:id', function(req, res){
   var textbookId = req.params.id;
-    Book.findByIdAndUpdate({_id: textbookId}, function(err, databaseTextbook){
+    Book.findByIdAndUpdate(textbookId, {status: 1}, function(err, databaseTextbook){
         res.json(databaseTextbook);
-      });
-    })
+    });
+})
 
 
 module.exports = router;
