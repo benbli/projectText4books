@@ -20,6 +20,17 @@ function clickListener(){
   
 }
 
+function modalTrigger() {
+
+}
+
+
+
+
+
+
+
+
 
 
 $(function(){

@@ -297,7 +297,7 @@ function hideModal(){
   $('#exit-modal').click(function(){
     $('#modal-view').hide();
     $('body').css({
-      background: 'white'
+      // background: 'white'
     })
   })
 }
