@@ -1,11 +1,10 @@
-<<<<<<< HEAD
 console.log("landing");
 
 $(function(){
   $('.sign-up').hide();
   $('#login').hide();
   renderLogForm();
-  renderSignForm();
+  // renderSignForm();
   // renderSignFormTwo();
 });
 
@@ -34,29 +33,3 @@ function renderLogForm(){
 //       }
 //     });
 // }
-=======
-// console.log("landing");
-//
-// $(function(){
-//   $('.sign-up').hide();
-//   $('#login').hide();
-//
-// });
-//
-//
-// document.getElementById('already-user').addEventListener("click", renderSignForm);
-//
-// function renderSignForm(){
-//   document.getElementsByClassName('sign-up').show();
-// }
-//
-//
-//
-//
-// $('.sign-up').on('click', '#already-user', function(){
-//   console.log('cela marche? ');
-//   $('.sign-up').show();
-//   console.log('cela marche? 2');
-//   $('#login').hide();
-// });
->>>>>>> 2d1c50db3a838c04bc6d8c6be6f8603a4bba05c6
