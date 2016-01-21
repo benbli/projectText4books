@@ -30,13 +30,13 @@ function renderCurrentUser(data){
       var sellingBookDiv = $('#books-for-sale');
       var soldButton =  $('<button data-id='+textbook._id+' id = "sell-book-link" class = "btn btn">').text('Book Has Been Sold');
       var deleteButton = $('<button data-id='+textbook._id+' id = "delete-book" class = "btn btn">').text('Remove Book');
-      eachBook.append(soldButton);
+      eachBook.append(soldButton, deleteButton);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
       var soldBookDiv = $('#sold-books');
-      var Sellbutton = $('<button data-id='+textbook._id+' id = "re-list-book" class = "btn btn">').text("Re-List Book");
+      var sellButton = $('<button data-id='+textbook._id+' id = "re-list-book" class = "btn btn">').text("Re-List Book");
       var soldImg = $('<img class="sold-img">').attr('src', "./images/Sold.png");
-      eachBook.append(Sellbutton);
+      eachBook.append(sellButton);
       soldBookDiv.append(eachBook, soldImg);
     }
   }
@@ -52,6 +52,12 @@ function removeTextbook(textbookId){
   })
 }
 
+function removeTextbookHandler(){
+  $('body').on('click', '#delete-book', function(){
+    var textbookId = this.dataset.id;
+    removeTextbook(textbookId);
+  })
+}
 
 function markTextbookAsSold(textbookId, textbookStatus){
   console.log('id: ', textbookId);
@@ -112,6 +118,7 @@ function appendUserInformation(user){
 }
 
 $(function(){
+  removeTextbookHandler();
   getUsersTextbooks();
   setSellTextbookHandler();
   setRelistTextbookHandler();
