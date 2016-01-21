@@ -61,7 +61,7 @@ body {
 }
 #login-password{
   position: relative;
-  left: -460px;
+  left: -95%;
   bottom: -80px;
 }
 #account-circle{
@@ -72,7 +72,7 @@ body {
 #mode-edit{
   position: relative;
   top: 100px;
-  right: 430px;
+  right: 80%;
 }
 #login-submit{
   position: relative;
