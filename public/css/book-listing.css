@@ -16,8 +16,10 @@
 }
 
 #each-book {
-  width: 220px;
-  height: 280px;
+  overflow: hidden;
+  text-align: center;
+  width: 250px;
+  height: 500px;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.72);
   padding: 4px 15px 15px 15px;
@@ -26,6 +28,11 @@
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
   box-shadow: 0 8px 6px -6px black;
+}
+
+#sell-book-link {
+  width: 100%;
+  font-size: 14px;
 }
 
 .sold-img {

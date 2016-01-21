@@ -4,10 +4,10 @@ var crypto = require('crypto');
 var Book = require('./book');
 
 var UserSchema = mongoose.Schema({
-  username: { type: String }, // NEED TO ADD REQUIRE
-  password: { type: String }, // password_digest && NEED TO ADD REQUIRE
-  college: { type: String },  // change this to bio schema so that we can put user's info all in one place
-  email: { type: String },
+  username: { type: String, required: true }, // NEED TO ADD REQUIRE
+  password: { type: String, required: true }, // password_digest && NEED TO ADD REQUIRE
+  college: { type: String, required: true },  // change this to bio schema so that we can put user's info all in one place
+  email: { type: String, required: true },
   token: { type: String }  // crypto - API token based auth. A location to place the token
 });
 

@@ -45,7 +45,6 @@ router.get('/:id', function(req, res){
   })
 })
 
-
 // Update the textbook to sold
 router.patch('/:id', function(req, res){
   var textbookId = req.params.id;
@@ -56,5 +55,12 @@ router.patch('/:id', function(req, res){
     });
 })
 
+// Delete textbook
+router.delete('/:id', function(req, res){
+  var textbookId = req.params.id;
+  Book.findByIdAndRemove(textbookId, function(err, databaseTextbook){
+    res.json(databaseTextbook)
+  });
+});
 
 module.exports = router;
