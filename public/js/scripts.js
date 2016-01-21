@@ -210,7 +210,7 @@ function renderApiSearch(data){
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">');
-  form.append($('<div class="input-field"> <select> <option value="" disabled selected>Choose your option</option> <option value="1">Option 1</option> <option value="2">Option 2</option> <option value="3">Option 3</option> </select> <label> Select</label> </div></br></br>'))
+  form.append($('<div class="input-field"> <select> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
   // form.append($('<div class="input-field col s12"><select><option value="" disabled selected>Choose your option</option><option value = "New">New</option><option value = "like-new">Like New</option><option value = "Used">Used</option></select></div>'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
   form.append($('<input type = hidden id = "submit-user-id">').val($.cookie('user-id')));
