@@ -61,8 +61,8 @@ body {
 }
 #login-password{
   position: relative;
-  right: 470px;
-  top: 100px;
+  left: -460px;
+  bottom: -80px;
 }
 #account-circle{
   position: relative;
