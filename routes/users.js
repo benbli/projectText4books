@@ -62,25 +62,19 @@ router.delete('/', function(req, res){
   });
 });
 
-// Delete User
-// router.delete('/:id', function(req, res){
-//   var userId = req.body.id;
-//   User.findOneAndRemove(userId);
-// })
-
 // Create a textbook
-router.post('/:id/textbooks', function(req, res){
-  var textbookBody = req.body.textbook || {};
-  // textbookBody.id = req.user.id;
-  var userId = req.params.id;
-  console.log('userId var: ', userId);
-  User.findById(userId, function(err, databaseUser){
-    var textbookNumber = databaseUser.textbooks.push(textbookBody);
-    databaseUser.save(function(err){
-      res.json({textbook: databaseUser.textbooks[textbookNumber-1]});
-    });
-  });
-});
+// router.post('/:id/textbooks', function(req, res){
+//   var textbookBody = req.body.textbook || {};
+//   // textbookBody.id = req.user.id;
+//   var userId = req.params.id;
+//   console.log('userId var: ', userId);
+//   User.findById(userId, function(err, databaseUser){
+//     var textbookNumber = databaseUser.textbooks.push(textbookBody);
+//     databaseUser.save(function(err){
+//       res.json({textbook: databaseUser.textbooks[textbookNumber-1]});
+//     });
+//   });
+// });
 
 // UPDATE the user's bio (going to add more bio information)
 router.patch ('/', function (req, res) {
@@ -93,15 +87,5 @@ router.patch ('/', function (req, res) {
   }
 });
 
-// UPDATE the user's bio (going to add more bio information)
-// router.patch ('/', function (req, res) {
-//   if(req.user){
-//     req.user.bio = req.body.user.bio; // modify the user's bio
-//
-//     req.user.save(function (err, databaseUser) {
-//       res.json(databaseUser);
-//     });
-//   }
-// });
 
 module.exports = router;

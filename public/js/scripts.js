@@ -131,6 +131,7 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     var userId = $('#submit-user-id').val();
 
+    debugger;
     textbookData = {
       title: titleText,
       isbn: isbnText,
@@ -138,7 +139,8 @@ function setTextbookFormHandler(textbookData, data, callback){
       image: imageText,
       description: descriptionText,
       condition: conditionText,
-      professor: professorText
+      professor: professorText,
+      user_id: userId
     };
 
     console.log(textbookData);
@@ -165,7 +167,7 @@ function createTextbook(userId, textbookData, callback){
     success: function(data){
       setUserLoginView();
       console.log(userId);
-      var textbook = data.textbook;
+      var textbook = data;
       callback(textbook);
       console.log(textbook);
     }
@@ -196,12 +198,14 @@ function setApiSearchHandler(){
 function renderApiSearch(data){
   var modalBody = $('#search-results');
   modalBody.append($('<h2 id = "book-title">').text(data.items[0].volumeInfo.title));
-  modalBody.append($('<h5 id = "book-isbn">').text('ISBN: ' + data.items[0].volumeInfo.industryIdentifiers[1].identifier));
+  modalBody.append($('<h5 id = "book-isbn">').text(data.items[0].volumeInfo.industryIdentifiers[1].identifier));
   modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
-  for (var i = 0; i < data.items[0].volumeInfo.authors.length; i++) {
-    var author = data.items[0].volumeInfo.authors[i];
-    modalBody.append($('<h4 id = "book-author">').text(author));
-  };
+  if(data.items[0].volumeInfo.authors != undefined){
+    for (var i = 0; i < data.items[0].volumeInfo.authors.length; i++) {
+      var author = data.items[0].volumeInfo.authors[i];
+      modalBody.append($('<h4 id = "book-author">').text(author));
+    };
+  }
   modalBody.append($('<p id = "book-description">').append(data.items[0].volumeInfo.description));
   renderBookInputs();
 }

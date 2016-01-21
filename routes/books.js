@@ -23,14 +23,27 @@ router.get('/', function(req, res){
     res.json({textbooks: databaseTextbooks})
   })
 })
-//
-// router.get('/', function(req, res){
-//   User.find(req.query.college? {college: req.query.college} : {}, function(err, databaseUsers){
-//     console.log(req.query)
-//     res.json({users: databaseUsers});
-//   });
-// });
 
+
+// Create Textbook
+router.post('/', function(req, res){
+  debugger
+  var bookData = req.body;
+  var newBook = new Book(bookData);
+  newBook.save(function(err, databaseBook){
+    debugger;
+    res.json(databaseBook);
+  })
+})
+
+router.post('/', function(req, res){
+  var userData = req.body.user;  // data sent
+  var newUser = new User(userData);  // make a new user using the data sent
+    // may look like: req.body.user = {username: 'lichard', password: '1234'}
+  newUser.save(function(err, databaseUser){  // save user to the database
+    res.json(databaseUser);
+  });
+});
 
 // Get one textbook
 router.get('/:id', function(req, res){
@@ -55,12 +68,5 @@ router.patch('/', function(req, res){
     })
   }
 });
-    // console.log('textbook-id put: '+textbookId);
-    //
-    // Book.findByIdAndUpdate(textbookId, {new : true}, function(err, databaseTextbook){
-    //   res.json(databaseTextbook);
-//     })
-//   }
-// })
 
 module.exports = router;
