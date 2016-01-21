@@ -173,6 +173,7 @@ function createTextbook(userId, textbookData, callback){
       callback(textbook);
     }
   })
+  getUsersTextbooks();
 }
 
 // Google Books API Search

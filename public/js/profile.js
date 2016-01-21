@@ -28,12 +28,12 @@ function renderCurrentUser(data){
     eachBook.append(title, author, isbn, condition, image);
     if(textbook.status === 0){
       var sellingBookDiv = $('#books-for-sale');
-      var Soldbutton =  $('<a data-id='+textbook._id+' id = "sell-book-link">').text('Book Has Been Sold');
+      var Soldbutton =  $('<button data-id='+textbook._id+' id = "sell-book-link" class = "btn btn">').text('Book Has Been Sold');
       eachBook.append(Soldbutton);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
       var soldBookDiv = $('#sold-books');
-      var Sellbutton = $('<a data-id='+textbook._id+' id = "re-list-book">').text("Re-List Book");
+      var Sellbutton = $('<button data-id='+textbook._id+' id = "re-list-book" class = "btn btn">').text("Re-List Book");
       var soldImg = $('<img class="sold-img">').attr('src', "./images/Sold.png");
       eachBook.append(Sellbutton);
       soldBookDiv.append(eachBook, soldImg);
@@ -87,8 +87,11 @@ function setRelistTextbookHandler(){
   })
 }
 
+
+
 $(function(){
   getUsersTextbooks();
   setSellTextbookHandler();
   setRelistTextbookHandler();
+  $('#profile-tab').remove();
 })
