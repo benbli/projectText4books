@@ -231,16 +231,16 @@ function renderBookInputs(){
 //   })
 // }
 
-// function getAllUsers(callback){
-//   $.ajax({
-//     url: '/api/users' ,
-//     success: function(data){
-//       var users = data.users || [];
-//       callback(users);
-//       // console.log("users: " + users);
-//     }
-//   });
-// }
+function getAllUsers(callback){
+  $.ajax({
+    url: '/api/users' ,
+    success: function(data){
+      var users = data.users || [];
+      callback(users);
+      // console.log("users: " + users);
+    }
+  });
+}
 
 function renderTextbooks(textbook){
   var source = $("#book-template").html();  // Go find the template
@@ -318,7 +318,7 @@ function getData(){
   console.log("this is your query: "+ query);
 
   $.ajax({
-    url: "api/books?college=" + $.cookie('college'),
+    url: "api/books?college=" + $.cookie('college') + '&status=0',
     method: 'get',
     success: function(data){
       renderHandlebars(data);
