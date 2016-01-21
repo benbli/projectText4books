@@ -145,9 +145,9 @@ function setTextbookFormHandler(textbookData, data, callback){
     console.log(textbookData);
 
     $('#modal-view').hide();
-    $('body').css({
-      background: 'white'
-    })
+    // $('body').css({
+      // background: 'white'
+    // })
 
 
     createTextbook(userId, textbookData, function(textbook){

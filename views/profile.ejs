@@ -3,28 +3,29 @@
 <head>
   <% include ./partials/head %>
   <script src="./js/profile.js" charset="utf-8"></script>
-
 </head>
-<body>
-  <a href = '/' id = "Home" class = "btn user-only">Home</a>
+  <body>
+  <div class="container">
+    <% include ./partials/header %>
+
+    <div id="modal-view">
+      <button id = "exit-modal" type="button" name="button">X</button>
+      <% include ./partials/list-book-form %>
+      <div id = "search-results">
+      </div>
+    </div>
+
+    <h1 id = "hello-user"></h1>
+    <p id = "college"></p>
+    <p id = "email"></p>
+    <div id = "books-for-sale">
+      <h3>Selling: </h3>
+    </div>
+    <div id = "sold-books">
+      <h3>Sold: </h3>
+    </div>
 
 
-<div class = "container">
-  <h1 id = "hello-user"></h1>
-
-  <h2 id = "college"></h2>
-
-  <h3 id = "email"></h3>
-
-  <div id = "books-for-sale">
-    <h1>Books For Sale: </h1>
-  </div>
-
-  <div id = "sold-books">
-    <h1>Books You've Sold: </h1>
-  </div>
-
-</div>
-
-</body>
+    </div>
+  </body>
 </html>

@@ -18,10 +18,10 @@ function renderCurrentUser(data){
   for (var i = 0; i < data.length; i++) {
     var textbook = data[i];
     var eachBook = $('<div id = "each-book">');
-    var title = $('<h2 id = "text-title">').text(textbook.title);
-    var author = $('<h4 id = "text-author">').text('By: ' + textbook.author);
-    var isbn = $('<h4 id = "text-isbn">').text('ISBN Code: ' + textbook.isbn);
-    var condition = $('<h4 id = "text-condition">').text('Condition: ' + textbook.condition)
+    var title = $('<h5 id = "text-title">').text(textbook.title);
+    var author = $('<p id = "text-author">').text('By: ' + textbook.author);
+    var isbn = $('<p id = "text-isbn">').text('ISBN Code: ' + textbook.isbn);
+    var condition = $('<p id = "text-condition">').text('Condition: ' + textbook.condition)
     var image = $('<img id = "text-image">').attr('src', textbook.image);
     eachBook.append(title, author, isbn, condition, image);
     if(textbook.status === 0){
