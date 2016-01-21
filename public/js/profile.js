@@ -1,24 +1,37 @@
 console.log('profiless');
 
-function getCurrentUser(){
+// function getCurrentUser(){
+//   var userId = $.cookie('user-id');
+//   $.ajax({
+//     method: 'get',
+//     url: '/api/users/' + userId,
+//     success: function(data){
+//       console.log(data);
+//       renderCurrentUser(data);
+//     }
+//   })
+// }
+
+function getUsersTextbooks(){
   var userId = $.cookie('user-id');
   $.ajax({
     method: 'get',
-    url: '/api/users/' + userId,
+    url: '/api/books?user=' + $.cookie('user-id'),
     success: function(data){
-      console.log(data);
-      renderCurrentUser(data);
+      console.log('what is this...', data.user_id);
+      renderCurrentUser(data)
     }
   })
 }
 
 function renderCurrentUser(data){
-  var data = data.users;
-  $('#hello-user').text("Hello " + data.username + "!");
-  $('#college').text("Currently Attending: " + data.college);
-  $('#email').text('Email: '+ data.email);
-  for (var i = 0; i < data.textbooks.length; i++) {
-    var textbook = data.textbooks[i];
+  var data = data.user_id;
+  console.log(data);
+  $('#hello-user').text("Hello " + $.cookie('username')+ "!");
+  $('#college').text("Currently Attending: " + $.cookie('college'));
+  $('#email').text('Email: '+ $.cookie('email'));
+  for (var i = 0; i < data.length; i++) {
+    var textbook = data[i];
     var eachBook = $('<div id = "each-book">');
     var title = $('<h2 id = "text-title">').text(textbook.title);
     var author = $('<h4 id = "text-author">').text('By: ' + textbook.author);
@@ -38,23 +51,24 @@ function renderCurrentUser(data){
   }
 }
 
-function getOneTextbook(){
-  var textbookId = window.location.hash.replace(/#/,'');
-  $.ajax({
-    method: 'get',
-    url: '/api/book/' + textbookId,
-    success: function(data){
-      console.log(data);
-    }
-  })
-}
+// function getOneTextbook(){
+//   var textbookId = window.location.hash.replace(/#/,'');
+//   $.ajax({
+//     method: 'get',
+//     url: '/api/books/' + textbookId,
+//     success: function(data){
+//       renderCurrentUser(data);
+//       console.log(data);
+//     }
+//   })
+// }
 
 function markTextbookAsSold(textbookStatus, callback){
   var textbookId = window.location.hash.replace(/#/,'');
   console.log('textbookId: ' + textbookId);
   $.ajax({
     method: 'patch',
-    url: '/api/book/' + textbookId,
+    url: '/api/book/' ,
     data: textbookStatus,
     success: function(data){
       callback(data)
@@ -75,6 +89,7 @@ function setSellTextbookHandler(){
 }
 
 $(function(){
-  getCurrentUser();
+  // getCurrentUser();
+  getUsersTextbooks();
   setSellTextbookHandler();
 })

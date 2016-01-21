@@ -13,11 +13,20 @@ router.use(function(req, res, next) {
 
 // Get all textbooks
 router.get('/', function(req, res){
-  Book.find(req.query.college? {college: req.query.college} : {}, function(err, databaseTextbooks){
-    console.log('book:'+ databaseTextbooks);
-    res.json({textbooks: databaseTextbooks})
-  })
-})
+  if (req.query.college){
+    Book.find({college: req.query.college}, function(err, databaseTextbooks){
+      res.json({textbooks: databaseTextbooks})
+    })
+  } else if (req.query.user){
+    Book.find({user_id: req.query.user}, function(err, databaseTextbooks){
+      res.json({user_id: databaseTextbooks})
+    })
+  } else {
+    Book.find({}, function(err, databaseTextbooks){
+      res.json({databaseTextbooks})
+    })
+  }
+});
 
 // Create Textbook
 router.post('/', function(req, res){

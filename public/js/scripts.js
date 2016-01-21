@@ -60,6 +60,7 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
+      console.log('data: ', data);
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       $.cookie('username', data.username);
@@ -322,7 +323,6 @@ function getData(){
     }
   });
 }
-
 
 $(function(){
   setLoginFormHandler();
