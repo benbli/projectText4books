@@ -130,6 +130,8 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     var collegeText = $('#submit-textbook-college').val();
 
+    var price = $("#price").val();
+
     textbookData = {
       title: titleText,
       isbn: isbnText,
@@ -139,6 +141,7 @@ function setTextbookFormHandler(textbookData, data, callback){
       condition: conditionText,
       professor: professorText,
       college: collegeText,
+      price: price,
       user_id: userId
     };
 
@@ -213,23 +216,12 @@ function renderBookInputs(){
   // form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
   form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition">'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
+  form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" value="25.67" placeholder = "Price"/>'));
   form.append($('<input type = hidden id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = hidden id = "submit-textbook-college">').val($.cookie('college')));
   form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
   $('#search-results').append(form);
 }
-
-// Render Page:
-// function getAllTextbooks(callback){
-//   $.ajax({
-//     url: '/api/books',
-//     success: function(data){
-//       var textbooks = data.textbooks || [];
-//       callback(textbooks);
-//       console.log("textbooks: ", textbooks);
-//     }
-//   })
-// }
 
 function getAllUsers(callback){
   $.ajax({
@@ -237,7 +229,6 @@ function getAllUsers(callback){
     success: function(data){
       var users = data.users || [];
       callback(users);
-      // console.log("users: " + users);
     }
   });
 }
