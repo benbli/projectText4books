@@ -4,7 +4,7 @@ function getOneTextbook(){
   var textbookId = window.location.hash.replace(/#/,'');
   $.ajax({
     method: 'get',
-    url: '/api/book/' + textbookId,
+    url: '/api/books/' + textbookId,
     success: function(data){
       console.log(data);
     }

@@ -44,13 +44,23 @@ router.get('/:id', function(req, res){
 })
 
 // Update the textbook to sold
-router.patch('/:id', function(req, res){
-  if(req.user){
+router.patch('/', function(req, res){
+  if(req.body['status']){
     var textbookId = req.params.id;
-
-    Book.findByIdAndUpdate(textbookId, {new : true}, function(err, databaseTextbook){
-      res.json(databaseTextbook);
+    User.findOne({'textbooks._id' : textbookId}, function(err, databaseUser){
+      var databaseTextbook = databaseUser.textbooks.id(textbookId);
+      Book.findByIdAndUpdate(textbookId, {new : true}, function(err, databaseTextbook){
+        res.json(databaseTextbook);
+      });
     })
   }
-})
+});
+    // console.log('textbook-id put: '+textbookId);
+    //
+    // Book.findByIdAndUpdate(textbookId, {new : true}, function(err, databaseTextbook){
+    //   res.json(databaseTextbook);
+//     })
+//   }
+// })
+
 module.exports = router;

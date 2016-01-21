@@ -8,7 +8,6 @@ var UserSchema = mongoose.Schema({
   password: { type: String }, // password_digest && NEED TO ADD REQUIRE
   college: { type: String },  // change this to bio schema so that we can put user's info all in one place
   email: { type: String },
-  textbooks: [Book.schema],
   token: { type: String }  // crypto - API token based auth. A location to place the token
 });
 

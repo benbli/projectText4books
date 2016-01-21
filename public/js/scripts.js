@@ -160,7 +160,7 @@ function createTextbook(userId, textbookData, callback){
   // console.log();
   $.ajax({
     method: 'post',
-    url: '/api/users/' + userId + '/textbooks',
+    url: '/api/books',
     data: {textbook: textbookData},
     success: function(data){
       setUserLoginView();
@@ -218,7 +218,7 @@ function renderBookInputs(){
 // Render Page:
 function getAllTextbooks(callback){
   $.ajax({
-    url: '/api/users/' + userId + '/textbooks',
+    url: '/api/books',
     success: function(data){
       var textbooks = data.textbooks || [];
       callback(textbooks);

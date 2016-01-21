@@ -6,7 +6,7 @@ function getCurrentUser(){
     method: 'get',
     url: '/api/users/' + userId,
     success: function(data){
-      console.log('whatttt: ', data);
+      console.log(data);
       renderCurrentUser(data);
     }
   })
@@ -28,6 +28,8 @@ function renderCurrentUser(data){
     eachBook.append(title, author, isbn, condition, image);
     if(textbook.status === 0){
       var sellingBookDiv = $('#books-for-sale');
+      var button =  $('<a href=#'+textbook._id+' id = "sell-book-link">').text('Sold Book');
+      eachBook.append(button);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
       var soldBookDiv = $('#sold-books');
@@ -36,6 +38,43 @@ function renderCurrentUser(data){
   }
 }
 
+function getOneTextbook(){
+  var textbookId = window.location.hash.replace(/#/,'');
+  $.ajax({
+    method: 'get',
+    url: '/api/book/' + textbookId,
+    success: function(data){
+      console.log(data);
+    }
+  })
+}
+
+function markTextbookAsSold(textbookStatus, callback){
+  var textbookId = window.location.hash.replace(/#/,'');
+  console.log('textbookId: ' + textbookId);
+  $.ajax({
+    method: 'patch',
+    url: '/api/book/' + textbookId,
+    data: textbookStatus,
+    success: function(data){
+      callback(data)
+    }
+  })
+}
+
+function setSellTextbookHandler(){
+  $('body').on('click', '#sell-book-link', function(){
+
+    var textbookStatus = {status: 1};
+    console.log('status: '+textbookStatus.status);
+
+    markTextbookAsSold(textbookStatus, function(textbook){
+      console.log(textbook);
+    })
+  })
+}
+
 $(function(){
   getCurrentUser();
+  setSellTextbookHandler();
 })
