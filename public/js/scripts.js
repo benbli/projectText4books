@@ -288,7 +288,7 @@ function showModal(){
      console.log('clicked');
      $('#modal-view').toggle();
      $('body').css({
-       background: 'rgb(180, 180, 180)'
+      //  background: 'rgb(180, 180, 180)'
      })
   });
 }
