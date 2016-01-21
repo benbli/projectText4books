@@ -34,8 +34,9 @@ function renderCurrentUser(data){
     } else if(textbook.status === 1) {
       var soldBookDiv = $('#sold-books');
       var Sellbutton = $('<a data-id='+textbook._id+' id = "re-list-book">').text("Re-List Book");
+      var soldImg = $('<img class="sold-img">').attr('src', "./images/Sold.png");
       eachBook.append(Sellbutton);
-      soldBookDiv.append(eachBook);
+      soldBookDiv.append(eachBook, soldImg);
     }
   }
 }

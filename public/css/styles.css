@@ -3,8 +3,8 @@ body {
   background-color: #ffab00;
 }
 .brand-logo {
-  position: relative;
-  left: 450px;
+  /*position: absolute;*/
+  left: 40%;
 }
 #sign-up-div{
   position: relative;
