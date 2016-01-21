@@ -220,27 +220,27 @@ function renderBookInputs(){
 }
 
 // Render Page:
-function getAllTextbooks(callback){
-  $.ajax({
-    url: '/api/books',
-    success: function(data){
-      var textbooks = data.textbooks || [];
-      callback(textbooks);
-      console.log("textbooks: ", textbooks);
-    }
-  })
-}
+// function getAllTextbooks(callback){
+//   $.ajax({
+//     url: '/api/books',
+//     success: function(data){
+//       var textbooks = data.textbooks || [];
+//       callback(textbooks);
+//       console.log("textbooks: ", textbooks);
+//     }
+//   })
+// }
 
-function getAllUsers(callback){
-  $.ajax({
-    url: '/api/users' ,
-    success: function(data){
-      var users = data.users || [];
-      callback(users);
-      // console.log("users: " + users);
-    }
-  });
-}
+// function getAllUsers(callback){
+//   $.ajax({
+//     url: '/api/users' ,
+//     success: function(data){
+//       var users = data.users || [];
+//       callback(users);
+//       // console.log("users: " + users);
+//     }
+//   });
+// }
 
 function renderTextbooks(textbook){
   var source = $("#book-template").html();  // Go find the template
@@ -298,6 +298,7 @@ function hideModal(){
     $('#modal-view').hide();
     $('body').css({
       // background: 'white'
+      // background: 'rgb(238, 157, 54)'
     })
   })
 }

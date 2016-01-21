@@ -14,7 +14,7 @@ router.use(function(req, res, next) {
 // Get all textbooks
 router.get('/', function(req, res){
   if (req.query.college){
-    Book.find({college: req.query.college}, function(err, databaseTextbooks){
+    Book.find({college: req.query.college, status: req.query.status}, function(err, databaseTextbooks){
       res.json({textbooks: databaseTextbooks})
     })
   } else if (req.query.user){
@@ -47,7 +47,7 @@ router.get('/:id', function(req, res){
 
 
 // Update the textbook to sold
-router.patch('/:id', function(req, res){
+router.put('/:id', function(req, res){
   var textbookId = req.params.id;
     Book.findByIdAndUpdate({_id: textbookId}, function(err, databaseTextbook){
         res.json(databaseTextbook);

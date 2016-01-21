@@ -1,5 +1,3 @@
-console.log('profiless');
-
 
 function getUsersTextbooks(){
   var userId = $.cookie('user-id');
@@ -7,7 +5,6 @@ function getUsersTextbooks(){
     method: 'get',
     url: '/api/books?user=' + $.cookie('user-id'),
     success: function(data){
-      console.log('what is this...', data.user_id);
       renderCurrentUser(data)
     }
   })
@@ -15,7 +12,6 @@ function getUsersTextbooks(){
 
 function renderCurrentUser(data){
   var data = data.user_id;
-  console.log(data);
   $('#hello-user').text("Hello " + $.cookie('username')+ "!");
   $('#college').text("Currently Attending: " + $.cookie('college'));
   $('#email').text('Email: '+ $.cookie('email'));
@@ -30,7 +26,7 @@ function renderCurrentUser(data){
     eachBook.append(title, author, isbn, condition, image);
     if(textbook.status === 0){
       var sellingBookDiv = $('#books-for-sale');
-      var button =  $('<a href=#'+textbook._id+' id = "sell-book-link">').text('Sold Book');
+      var button =  $('<a data-id='+textbook._id+' id = "sell-book-link">').text('Sold Book');
       eachBook.append(button);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
@@ -41,15 +37,17 @@ function renderCurrentUser(data){
 }
 
 
-function markTextbookAsSold(textbookStatus, callback){
-  var textbookId = window.location.hash.replace(/#/,'');
-  console.log('textbookId: ' + textbookId);
+function markTextbookAsSold(textbookId, textbookStatus){
+  console.log('status: ', textbookStatus);
+  console.log('id: ', textbookId);
   $.ajax({
-    method: 'patch',
-    url: '/api/book/' ,
+    method: 'put',
+    url: '/api/books/' + textbookId,
     data: textbookStatus,
     success: function(data){
-      callback(data)
+      console.log('after marked: ', data);
+      // callback(data);
+      renderCurrentUser(data);
     }
   })
 }
@@ -58,16 +56,16 @@ function setSellTextbookHandler(){
   $('body').on('click', '#sell-book-link', function(){
 
     var textbookStatus = {status: 1};
-    console.log('status: '+textbookStatus.status);
+    // console.log('status: ', textbookStatus);
 
-    markTextbookAsSold(textbookStatus, function(textbook){
-      console.log(textbook);
-    })
+    var textbookId = this.dataset.id;
+    // console.log(textbookId);
+
+    markTextbookAsSold(textbookId, textbookStatus)
   })
 }
 
 $(function(){
-  // getCurrentUser();
   getUsersTextbooks();
   setSellTextbookHandler();
 })
