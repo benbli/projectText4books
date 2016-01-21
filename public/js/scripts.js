@@ -298,7 +298,6 @@ function hideModal(){
     $('#modal-view').hide();
     $('body').css({
       // background: 'white'
-      // background: 'rgb(238, 157, 54)'
     })
   })
 }
