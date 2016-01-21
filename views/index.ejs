@@ -54,9 +54,32 @@
 
 
 <!--******** Modal TESTING ******** -->
+<script>
+<div class="card small">
+   <div class="card-image waves-effect waves-block waves-light">
+     <img class="activator" src="{{image}}">
+   </div>
+   <div class="card-content">
+     <span class="card-title activator grey-text text-darken-4"><i class="material-icons right">more_vert</i></span>
+   </div>
+   <div class="card-reveal">
+     <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+     <p>Here is some more information about this product that is only revealed once clicked on.</p>
+   </div>
+ </div>
+</script>
 
 
-
+ <ul>
+   {{#each textbooks}}
+     <div data-id={{_id}} class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
+       <!-- <li><h3 class="book-title">{{title}}</h3></li>
+       <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
+       <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
+       <li><p class="book-author">author(s): {{author}}</p></li> -->
+     </div>
+   {{/each}}
+ </ul>
 
 <!-- ****************************** -->
 
