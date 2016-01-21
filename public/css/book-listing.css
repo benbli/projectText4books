@@ -1,22 +1,5 @@
-body {
-  width: 100%;
-  height: 100%;
-}
-
-ul {
-  height: 100%;
-  width: 80%;
-  padding-left: 50px;
-  padding-top: 50px;
-  padding-right: -10px;
-}
-
-li {
-  list-style: none;
-}
-
-a {
-  text-decoration: none;
+#rendered-textbooks {
+  margin-top: 50px;
 }
 
 .listed-books {
@@ -25,7 +8,7 @@ a {
   display: inline-block;
   background-color: #858383;
   padding: 25px;
-  margin: 0px 30px 60px 0px;
+  margin: 0px 25px 60px 0px;
   overflow: scroll;
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;

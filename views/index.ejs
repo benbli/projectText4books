@@ -5,15 +5,14 @@
   <input type="hidden" name="_id" value="">
   <script id="textbook-template" type="text/x-handlebars-template">
     <ul>
-
-        {{#each textbooks}}
-          <div data-id={{_id}} class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
-            <li><h3 class="book-title">{{title}}</h3></li>
-            <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
-            <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
-            <li><p class="book-author">author(s): {{author}}</p></li>
-          </div>
-        {{/each}}
+      {{#each textbooks}}
+        <div data-id={{_id}} class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
+          <!-- <li><h3 class="book-title">{{title}}</h3></li>
+          <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
+          <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
+          <li><p class="book-author">author(s): {{author}}</p></li> -->
+        </div>
+      {{/each}}
     </ul>
   </script>
 </head>
@@ -22,9 +21,9 @@
 
     <% include ./partials/header %>
 
-  <button class = "user-only" id = "logout" value = "Logout">Logout</button>
-  <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button>
-  <a href = '/profile' id = "user-profile" class = "btn user-only">User Profile</a>
+  <!-- <button class = "user-only" id = "logout" value = "Logout">Logout</button> -->
+  <!-- <button id = "start-modal" class = "user-only" type="button" name="button"> Sell Textbooks</button> -->
+  <!-- <a href = '/profile' id = "user-profile" class = "btn user-only">User Profile</a> -->
 
   <% include ./partials/userForms %>
 ​
