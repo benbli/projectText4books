@@ -30,11 +30,9 @@ router.get('/', function(req, res){
 
 // Create Textbook
 router.post('/', function(req, res){
-  debugger
   var bookData = req.body;
   var newBook = new Book(bookData);
   newBook.save(function(err, databaseBook){
-    debugger;
     res.json(databaseBook);
   })
 })
@@ -51,13 +49,11 @@ router.post('/', function(req, res){
 // Get one textbook
 router.get('/:id', function(req, res){
   var textbookId = req.params.id;
-  console.log('user id: ', textbookId);
-  User.findOne({'textbooks._id' : textbookId}, function(err, databaseUser){
-    var databaseTextbook = databaseUser.textbooks.id(textbookId);
-    console.log('textbook return: ', databaseTextbook);
-    res.json(databaseTextbook)
+  Book.findOne({_id: textbookId}, function(err, databaseTextbook){
+    res.json(databaseTextbook);
   })
 })
+
 
 // Update the textbook to sold
 router.patch('/', function(req, res){

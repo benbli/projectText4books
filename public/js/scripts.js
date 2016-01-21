@@ -210,7 +210,8 @@ function renderApiSearch(data){
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">');
-  form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
+  // form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
+  form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition">'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
   form.append($('<input type = hidden id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = hidden id = "submit-textbook-college">').val($.cookie('college')));
@@ -308,7 +309,7 @@ function renderHandlebars(data) {
   var $resultsPlaceholder = $('#rendered-textbooks');
   $resultsPlaceholder.html('test');
   $resultsPlaceholder.html(template(data));
-  console.log(data);
+  console.log(data.textbooks);
 }
 
 function getData(){
@@ -323,6 +324,7 @@ function getData(){
     }
   });
 }
+
 
 $(function(){
   setLoginFormHandler();

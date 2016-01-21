@@ -1,21 +1,28 @@
 console.log('loaddddddddddd');
 
-function getOneTextbook(){
-  var textbookId = window.location.hash.replace(/#/,'');
+
+function getOneTextbook(id){
   $.ajax({
     method: 'get',
-    url: '/api/books/' + textbookId,
+    url: '/api/books/' + id,
     success: function(data){
       console.log(data);
     }
   })
+};
+
+function clickListener(){
+
+  $('body').on('click', '.listed-books', function() {
+    console.log('click');
+    getOneTextbook(this.dataset.id);
+  });
 }
+
+
 
 $(function(){
 
-  $('body').on('click', '.listed-books', function() {
-    console.log('click?');
-    getOneTextbook();
-  })
+  clickListener();
 
 })
