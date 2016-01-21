@@ -10,20 +10,14 @@ router.use(function(req, res, next) {
   next();
 });
 
-router.get('/', function(req, res, next) {
-  res.json('http://isbndb.com/api/v2/json/ZWOQIN7L/books?q=science', function (data) {
-    console.log(data);
-  });
-});
 
 // Get all textbooks
 router.get('/', function(req, res){
-  Book.find({}, function(err, datbaseTextbooks){
-    console.log('book: ',databaseTextbooks);
+  Book.find(req.query.college? {college: req.query.college} : {}, function(err, databaseTextbooks){
+    console.log('book:'+ databaseTextbooks);
     res.json({textbooks: databaseTextbooks})
   })
 })
-
 
 // Create Textbook
 router.post('/', function(req, res){

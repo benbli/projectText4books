@@ -9,6 +9,7 @@ var TextbookSchema = mongoose.Schema({
   description: { type: String },
   image: { type: String },
   professor: { type: String },
+  college: { type: String },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
