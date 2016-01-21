@@ -29,7 +29,7 @@ function renderCurrentUser(data){
     if(textbook.status === 0){
       var sellingBookDiv = $('#books-for-sale');
       var soldButton =  $('<button data-id='+textbook._id+' id = "sell-book-link" class = "btn btn">').text('Book Has Been Sold');
-      var deleteButton = $('<button data-id='+textbook._id+' id = "delete-book" class = "btn btn">').text('Remove Book');
+      var deleteButton = $('<i data-id='+textbook._id+' id = "delete-book" class = "material-icons z-depth-1">').text('delete');
       eachBook.append(soldButton, deleteButton);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
