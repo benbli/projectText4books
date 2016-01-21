@@ -5,16 +5,14 @@
   ​
   <script id="textbook-template" type="text/x-handlebars-template">
     <ul>
-      {{#each users}}
-          {{#each textbooks}}
+        {{#each textbooks}}
           <a href="#{{_id}}" class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
             <li><h3 class="book-title">{{title}}</h3></li>
             <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
             <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
             <li><p class="book-author">author(s): {{author}}</p></li>
           </a>
-          {{/each}}
-      {{/each}}
+        {{/each}}
     </ul>
   </script>
 </head>

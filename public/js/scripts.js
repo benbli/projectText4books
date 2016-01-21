@@ -301,13 +301,14 @@ function hideModal(){
 }
 
 function renderHandlebars(data) {
+  console.log(data.textbooks);
   var source = $('#textbook-template').html();
   var template = Handlebars.compile(source);
 
   var $resultsPlaceholder = $('#rendered-textbooks');
   $resultsPlaceholder.html('test');
-  $resultsPlaceholder.html(template(data));
-  console.log(data);
+  $resultsPlaceholder.html(template(data.textbooks));
+  // console.log(data);
 }
 
 function getData(){
@@ -318,7 +319,11 @@ function getData(){
     url: "api/books?college=" + $.cookie('college'),
     method: 'get',
     success: function(data){
-      console.log('college books...'+data);
+      for (var i = 0; i < data.textbooks.length; i++) {
+        var textbook = data.textbooks[i];
+        console.log('textbook: ', textbook);
+      }
+      // console.log('college books...', data.textbooks[0]);
       renderHandlebars(data);
     }
   });
