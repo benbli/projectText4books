@@ -107,10 +107,6 @@ function toggleLogin(){
   });
 }
 
-function setTextbookUserId(userId){
-  $('input[name="textbook-user-id"]').val('test');
-};
-
 function setTextbookFormHandler(textbookData, data, callback){
   $('body').on('submit', 'form#submit-book-form', function(e){
     e.preventDefault();
@@ -131,7 +127,8 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     var userId = $('#submit-user-id').val();
 
-    debugger;
+    var collegeText = $('#submit-textbook-college').val();
+
     textbookData = {
       title: titleText,
       isbn: isbnText,
@@ -140,6 +137,7 @@ function setTextbookFormHandler(textbookData, data, callback){
       description: descriptionText,
       condition: conditionText,
       professor: professorText,
+      college: collegeText,
       user_id: userId
     };
 
@@ -163,13 +161,12 @@ function createTextbook(userId, textbookData, callback){
   $.ajax({
     method: 'post',
     url: '/api/books',
-    data: {textbook: textbookData},
-    success: function(data){
+    data: textbookData,
+    success: function(textbook){
       setUserLoginView();
       console.log(userId);
-      var textbook = data;
-      callback(textbook);
       console.log(textbook);
+      callback(textbook);
     }
   })
 }
@@ -215,6 +212,7 @@ function renderBookInputs(){
   form.append($('<input type = text id = "condition" placeholder = "Book Condition">'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
   form.append($('<input type = text id = "submit-user-id">').val($.cookie('user-id')));
+  form.append($('<input type = text id = "submit-textbook-college">').val($.cookie('college')));
   form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
   $('#search-results').append(form);
 }
@@ -307,6 +305,7 @@ function renderHandlebars(data) {
   var template = Handlebars.compile(source);
 
   var $resultsPlaceholder = $('#rendered-textbooks');
+  $resultsPlaceholder.html('test');
   $resultsPlaceholder.html(template(data));
   console.log(data);
 }
@@ -316,9 +315,10 @@ function getData(){
   console.log("this is your query: "+ query);
 
   $.ajax({
-    url: "api/users?college=" + $.cookie('college'),
+    url: "api/books?college=" + $.cookie('college'),
     method: 'get',
     success: function(data){
+      console.log('college books...'+data);
       renderHandlebars(data);
     }
   });
