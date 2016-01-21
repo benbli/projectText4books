@@ -5,15 +5,34 @@
 
 <div class="logged-out" id = "sign-up-div" width="100">
   <div class="row">
-    <form class="sign-up" action="api/users" method="post">
-      <h3>Sign Up</h3>
-        <input type="text" id = "signup-username" name="user[username]" placeholder = "username">
-        <input type="password" id = "signup-password" name="user[password]" placeholder = "password">
-        <input type="text" id = "signup-email" name="user[email]" value="" placeholder = "email">
-        <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
-        <input id="signup-submit" type="submit" name="name" value="Sign-Up">
+    <form class="col s24">
+      <form class="sign-up" action="api/users" method="post">
+        <h3>Sign Up</h3>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input type="text" id = "signup-username" name="user[username]" placeholder = "username">
+        </div>
+
+        <div class="input-field col s6">
+          <i class="material-icons prefix">mode_edit</i>
+          <input type="password" id = "signup-password" name="user[password]" placeholder = "password">
+        </div>
+
+        <div class="input-field col s6">
+          <input type="text" id = "signup-email" name="user[email]" value="" placeholder = "email">
+          <i class="material-icons prefix">email</i>
+        </div>
+
+        <div class="input-field col s6">
+          <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
+          <i class="material-icons prefix">library_books</i>
+        </div>
+
+          <input id="signup-submit" type="submit" name="name" value="Sign-Up">
+      </form>
+      <button type="button" id = "already-user" name="button">Already Have an Account?</button>
     </form>
-    <button type="button" id = "already-user" name="button">Already Have an Account?</button>
 </div>
 </div>
 
@@ -26,9 +45,11 @@
     <div class="row">
     <h3 class="login-title">Login</h3>
     <div class="input-field col s6">
+      <i id="account-circle" class="material-icons prefix">account_circle</i>
       <input type="text" id = "login-username" name="username" value="" placeholder = "username">
     </div>
     <div class="input-field col s6">
+    <i id="mode-edit"class="material-icons prefix">mode_edit</i>
     <input type="password" id = "login-password" name="password" value="" placeholder = "password">
     </div>
     <input id="login-submit" type="submit" name="name" value = "Login">
@@ -37,6 +58,11 @@
 </div>
   </div>
 </div>
+
+
+
+
+
 
 
 <!-- a user lands on the home page and sees the forms to log in. -->
