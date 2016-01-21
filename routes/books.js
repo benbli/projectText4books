@@ -49,7 +49,9 @@ router.get('/:id', function(req, res){
 // Update the textbook to sold
 router.patch('/:id', function(req, res){
   var textbookId = req.params.id;
-    Book.findByIdAndUpdate(textbookId, {status: 1}, function(err, databaseTextbook){
+  var textbookStatus = req.body.status
+  console.log('req.body =', req.body);
+    Book.findByIdAndUpdate(textbookId, {status: textbookStatus}, function(err, databaseTextbook){
         res.json(databaseTextbook);
     });
 })
