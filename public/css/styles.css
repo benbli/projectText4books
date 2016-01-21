@@ -1,21 +1,16 @@
+
 body {
   background-color: #ffab00;
 }
-/*h1 {
-position: relative;
-left: 500px;
-}*/
-
-/*positing of sign up div */
+.brand-logo {
+  position: relative;
+  left: 450px;
+}
 #sign-up-div{
   position: relative;
-  left: 509px;
+  left: 209px;
 }
-/*.material-icons {
-  position: relative;
-  top: -10px;
-  left: -10px;
-}*/
+
 #signup-username{
   position: relative;
   top: 20px;
@@ -33,7 +28,6 @@ left: 500px;
 }
 #signup-college{
   position: relative;
-  /*right: 32px;*/
   top: 80px;
 }
 #signup-submit{
@@ -45,8 +39,8 @@ left: 500px;
 }
 #already-user{
   position: relative;
-  right: 630px;
-  top: 360px;
+  right: -220px;
+  top: 95px;
   color: rgba(0, 0, 0, 1);
 }
 
@@ -55,7 +49,7 @@ left: 500px;
 #login-div{
   position: relative;
   top: 200px;
-  left: 410px;
+  left: 110px;
 }
 .login-title{
   position: relative;
@@ -68,7 +62,7 @@ left: 500px;
 }
 #login-password{
   position: relative;
-  right: 600px;
+  right: 470px;
   top: 100px;
 }
 #account-circle{
@@ -79,7 +73,7 @@ left: 500px;
 #mode-edit{
   position: relative;
   top: 100px;
-  right: 560px;
+  right: 430px;
 }
 #login-submit{
   position: relative;
