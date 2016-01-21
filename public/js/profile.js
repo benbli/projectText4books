@@ -20,7 +20,7 @@ function renderCurrentUser(data){
     var eachBook = $('<div id = "each-book">');
     var title = $('<h5 id = "text-title">').text(textbook.title);
     var author = $('<p id = "text-author">').text('By: ' + textbook.author);
-    var isbn = $('<p id = "text-isbn">').text('ISBN Code: ' + textbook.isbn);
+    var isbn = $('<p id = "text-isbn">').text('ISBN#: ' + textbook.isbn);
     var condition = $('<p id = "text-condition">').text('Condition: ' + textbook.condition)
     var image = $('<img id = "text-image">').attr('src', textbook.image);
     eachBook.append(title, author, isbn, condition, image);
