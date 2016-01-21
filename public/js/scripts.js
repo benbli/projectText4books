@@ -318,7 +318,6 @@ function getData(){
     url: "api/books?college=" + $.cookie('college'),
     method: 'get',
     success: function(data){
-      console.log('college books...'+data);
       renderHandlebars(data);
     }
   });
