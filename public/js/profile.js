@@ -1,16 +1,5 @@
 console.log('profiless');
 
-// function getCurrentUser(){
-//   var userId = $.cookie('user-id');
-//   $.ajax({
-//     method: 'get',
-//     url: '/api/users/' + userId,
-//     success: function(data){
-//       console.log(data);
-//       renderCurrentUser(data);
-//     }
-//   })
-// }
 
 function getUsersTextbooks(){
   var userId = $.cookie('user-id');
@@ -51,17 +40,6 @@ function renderCurrentUser(data){
   }
 }
 
-// function getOneTextbook(){
-//   var textbookId = window.location.hash.replace(/#/,'');
-//   $.ajax({
-//     method: 'get',
-//     url: '/api/books/' + textbookId,
-//     success: function(data){
-//       renderCurrentUser(data);
-//       console.log(data);
-//     }
-//   })
-// }
 
 function markTextbookAsSold(textbookStatus, callback){
   var textbookId = window.location.hash.replace(/#/,'');
