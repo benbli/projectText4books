@@ -47,7 +47,8 @@ function renderCurrentUser(data){
   if(soldTextbooks === 0) {
     var noneSold = $('<h5 id = "none-sold">').text("You haven't sold any books yet!");
     $('#sold-books').append(noneSold);
-  } else if(sellingTextbooks === 0) {
+  }
+  if(sellingTextbooks === 0) {
     var noneSelling = $('<h5 id = "none-selling">').text("You aren't selling any textbooks right now!");
     var sellTextbook = $('<button id = "start-modal" class = "btn btn">').text("Sell a Book");
     $('#books-for-sale').append(noneSelling, sellTextbook);
@@ -72,13 +73,11 @@ function removeTextbookHandler(){
 }
 
 function markTextbookAsSold(textbookId, textbookStatus){
-  console.log('id: ', textbookId);
   $.ajax({
     method: 'patch',
     url: '/api/books/' + textbookId,
     data: textbookStatus,
     success: function(data){
-      console.log('on success data: ', data);
       getUsersTextbooks();
     }
   })

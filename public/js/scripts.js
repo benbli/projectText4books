@@ -6,7 +6,6 @@ function createUser(userData, callback){
     url: '/api/users',
     data: {user: userData},
     success: function(data){
-      console.log('success create user: ', data); // data.user is undefined...
       callback(data);
     }
   });
@@ -40,7 +39,6 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      console.log("User : ", user);
       $('#login-div').show();
       $('#sign-up-div').hide();
       updateView();
@@ -51,7 +49,6 @@ function setCreateUserHandler(){
 // Login Functions:
 function login(username, password, callback) {
   callback = callback || function(){};
-  console.log(username, password);
   $.ajax({
     method: 'post',
     url: '/api/users/authenticate',
@@ -60,8 +57,6 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
-      console.log('data: ', data);
-      // console.log('email? ', data.email);
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       $.cookie('username', data.username);
@@ -71,6 +66,10 @@ function login(username, password, callback) {
       setUserLoginView();
     }
   });
+}
+
+function renderGreeting(){
+  $('#greeting').text('Hi ' + $.cookie('username') + '! Here are all the textbooks for sale on the ' + $.cookie('college') + ' campus:');
 }
 
 function setLoginFormHandler(){
@@ -94,6 +93,7 @@ function setLogoutFormHandler(){
   $('#logout').click(function(){
     $.removeCookie('token');
     $.removeCookie('user-id');
+    $('#no-books').remove();
     setUserLoginView();
   });
 }
@@ -149,13 +149,7 @@ function setTextbookFormHandler(textbookData, data, callback){
       user_id: userId
     };
 
-    console.log(textbookData);
-
     $('#modal-view').hide();
-    // $('body').css({
-      // background: 'white'
-    // })
-
 
     createTextbook(userId, textbookData, function(textbook){
       updateView();
@@ -165,15 +159,12 @@ function setTextbookFormHandler(textbookData, data, callback){
 
 function createTextbook(userId, textbookData, callback){
   callback = callback || function(){};
-  // console.log();
   $.ajax({
     method: 'post',
     url: '/api/books',
     data: textbookData,
     success: function(textbook){
       setUserLoginView();
-      console.log(userId);
-      console.log(textbook);
       callback(textbook);
     }
   })
@@ -187,6 +178,7 @@ function searchGoogleAPI(){
     method: 'get',
     url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
     success: function(data){
+      console.log(data);
       $('#isbn').val('');
       renderApiSearch(data);
     }
@@ -197,7 +189,6 @@ function setApiSearchHandler(){
   $('#isbn-submit').click(function(e){
     e.preventDefault();
 
-    console.log('search!!!');
     searchGoogleAPI();
   })
 }
@@ -250,6 +241,17 @@ function renderTextbooks(textbook){
   return textbookElement;
 }
 
+// function showDescription(){
+//   $('body').on('click', '#show-description', function(){
+//     $('#show-description').toggle();
+//     $('#card-description').toggle();
+//   })
+//   $('body').on('click', '#hide-description', function(){
+//     $('#show-description').toggle();
+//     $('#card-description').toggle();
+//   })
+// }
+
 function renderUsers(usersArray){
   var source = $("#users-template").html();  // Go find the template
   var template = Handlebars.compile(source); // Create a template function
@@ -266,15 +268,19 @@ function updateView(){
   });
 };
 
+function removeGreetingAndBookMessage(){
+  $('#greeting').remove();
+  $('#no-books').remove();
+}
+
 
 function setUserLoginView(){
   if($.cookie('token')){
-    console.log('cookie is present!');
     getData();
+    renderGreeting();
     $('.user-only').show();
     $('.logged-out').hide();
   } else {
-    console.log("no cookies!");
     $('.user-only').hide();
     $('.logged-out').show();
   }
@@ -283,11 +289,7 @@ function setUserLoginView(){
 
 function showModal(){
   $('body').on('click', '#start-modal', function(){
-     console.log('clicked');
      $('#modal-view').toggle();
-     $('body').css({
-      //  background: 'rgb(180, 180, 180)'
-     })
   });
 }
 
@@ -309,20 +311,24 @@ function renderHandlebars(data) {
   var $resultsPlaceholder = $('#rendered-textbooks');
   $resultsPlaceholder.html('test');
   $resultsPlaceholder.html(template(data));
-  console.log(data.textbooks);
 }
 
 function getData(){
-  var query = $('#textbook-input').val();
-  console.log("this is your query: "+ query);
-
   $.ajax({
     url: "api/books?college=" + $.cookie('college') + '&status=0',
     method: 'get',
     success: function(data){
+      if(data.textbooks.length === 0){
+        noBooksOnCampus()
+      }
       renderHandlebars(data);
     }
   });
+}
+
+function noBooksOnCampus(){
+  var noBooks = $('<h5 id = "no-books" class = "user-only">').text('Uh oh...looks like the ' + $.cookie('college') + 'campus doesn\t have any books for sale at the moment!');
+  $('body').append(noBooks);
 }
 
 
@@ -337,12 +343,9 @@ $(function(){
   hideModal();
   setUserLoginView();
   setApiSearchHandler();
+  // showDescription();
 });
 
-// $(document).ready(function(){
-//   $('select').material_select();
-//   $('select').on('contentChanged', function() {
-//     // re-initialize (update)
-//     $(this).material_select();
-//   });
-// })
+$(document).ready(function(){
+  $('select').material_select();
+})
