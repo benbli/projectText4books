@@ -43,13 +43,15 @@
   <% include ./partials/userForms %>
 ​
   <div id="modal-view">
-    <button id = "exit-modal" type="button" name="button">X</button>
+    <button id = "exit-modal" class = "btn btn" type="button" name="button">X</button>
     <% include ./partials/list-book-form %>
     <div id = "search-results">
     </div>
   </div>
 
   <h4 id = "greeting" class = "user-only"></h4>
+  <h5 id = "no-books"></h5>
+
   <div id="rendered-textbooks" class="user-only">
   </div>
 

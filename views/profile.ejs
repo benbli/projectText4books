@@ -9,24 +9,29 @@
     <% include ./partials/header %>
 
     <div id="modal-view">
-      <button id = "exit-modal" type="button" name="button">X</button>
+      <button id = "exit-modal" class = "btn btn" type="button" name="button">X</button>
       <% include ./partials/list-book-form %>
       <div id = "search-results">
       </div>
     </div>
 
+  <div id = "profile-greeting">
     <h1 id = "hello-user"></h1>
     <h4 id = "college"></h4>
     <h5 id = "email"></h5>
+  </div>
 
+  <div id = "selling-container">
     <h3>Selling: </h3>
     <div id = "books-for-sale">
     </div>
+  </div>
 
+  <div id = "sold-container">
     <h3>Sold: </h3>
     <div id = "sold-books">
     </div>
-
+  </div>
 
     </div>
   </body>

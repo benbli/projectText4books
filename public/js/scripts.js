@@ -6,6 +6,7 @@ function createUser(userData, callback){
     url: '/api/users',
     data: {user: userData},
     success: function(data){
+      $('#modal1').closeModal();
       callback(data);
     }
   });
@@ -39,8 +40,8 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      $('#login-div').show();
-      $('#sign-up-div').hide();
+      // $('#login-div').show();
+      // $('#sign-up-div').hide();
       updateView();
     });
   });
@@ -57,6 +58,7 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
+      $('#modal1').closeModal();
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       $.cookie('username', data.username);
@@ -85,6 +87,7 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(callback){
+      $('#modal1').closeModal();
     });
   });
 }
@@ -281,6 +284,7 @@ function setUserLoginView(){
     $('.user-only').show();
     $('.logged-out').hide();
   } else {
+    renderTextbookInfo();
     $('.user-only').hide();
     $('.logged-out').show();
   }
@@ -327,10 +331,25 @@ function getData(){
 }
 
 function noBooksOnCampus(){
-  var noBooks = $('<h5 id = "no-books" class = "user-only">').text('Uh oh...looks like the ' + $.cookie('college') + 'campus doesn\t have any books for sale at the moment!');
-  $('body').append(noBooks);
+  var noBooks = $('#no-books');
+  noBooks.text('Uh oh...looks like the ' + $.cookie('college') + 'campus doesn\t have any books for sale at the moment!');
 }
 
+function renderTextbookInfo(){
+  var random = Math.random();
+  if(random < 0.25){
+    $('#textbook-info').text('College textbooks prices have risen %1,041 since 1977, let\s put an end to the madness.')
+  }
+  else if(random < 0.5){
+    $('#textbook-info').text('Stop selling back your textbooks to large book-resellers, and sell directly to the student with Text4Books.')
+  }
+  else if(random < 0.75){
+    $('#textbook-info').text('Get cash quick by connecting with fellow students who are right on campus that need your books.')
+  }
+  else if(random < 1) {
+    $('#textbook-info').text('Textbook prices have increased more than tuition, medical services, and new home prices...Let\s put an end to this.')
+  }
+}
 
 $(function(){
   setLoginFormHandler();
@@ -349,3 +368,8 @@ $(function(){
 $(document).ready(function(){
   $('select').material_select();
 })
+
+$(document).ready(function(){
+  // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
+  $('.modal-trigger').leanModal();
+});

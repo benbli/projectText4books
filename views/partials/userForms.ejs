@@ -1,55 +1,48 @@
 
-<div class="logged-out" id = "sign-up-div" width="100">
-  <div class="row">
+
+<div id = "landing-page" class = "logged-out">
+  <h5 id = "textbook-info"></h5>
+  <a id = "signup-button" class="waves-effect waves-light btn modal-trigger" href="#modal1">Signup</a>
+  <a id = "login-button" class="waves-effect waves-light btn modal-trigger" href="#modal2">Login</a>
+</div>
+
+<div id="modal1" class="modal">
+  <div class="modal-content">
       <form class="sign-up col s24" action="api/users" method="post">
-        <h3>Sign Up</h3>
-
-        <div class="input-field col s6">
-          <i class="material-icons prefix">account_circle</i>
+        <h3 id = "signup-title">Sign Up</h3>
+        <a href="#!" id = "close-signup" class=" modal-action modal-close waves-effect waves-green btn">X</a> </br>
+          <i id = "singup-name-icon" class="material-icons prefix">account_circle</i>
           <input type="text" id = "signup-username" name="user[username]" placeholder = "username">
-        </div>
 
-        <div class="input-field col s6">
           <i class="material-icons prefix">mode_edit</i>
           <input type="password" id = "signup-password" name="user[password]" placeholder = "password">
-        </div>
 
-        <div class="input-field col s6">
-          <input type="text" id = "signup-email" name="user[email]" value="" placeholder = "email">
           <i class="material-icons prefix">email</i>
-        </div>
+          <input type="text" id = "signup-email" name="user[email]" value="" placeholder = "email">
 
-        <div class="input-field col s6">
-          <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
           <i class="material-icons prefix">library_books</i>
-        </div>
+          <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
 
-          <input id="signup-submit" type="submit" name="name" value="Sign-Up">
-      </form>
-      <button type="button" id = "already-user" name="button">Already Have an Account?</button>
-
-</div>
-</div>
+          <input id="signup-submit" class = "btn btn" type="submit" name="name" value="Sign-Up"> </br>
+        </form>
+    </div>
+  </div>
 
 
+<div id="modal2" class="modal">
+  <div class="modal-content">
+    <form id = "login">
+      <h3 id="login-title">Login</h3>
+      <a href="#!" id = "close-signup" class=" modal-action modal-close waves-effect waves-green btn">X</a></br>
 
+        <i id="account-circle" class="material-icons prefix">account_circle</i>
+        <input type="text" id = "login-username" name="username" value="" placeholder = "username">
 
-<div class="logged-out" id = "login-div">
-  <div class="row">
-  <form id = "login" class="col s12">
-    <div class="row">
-        <h3 class="login-title">Login</h3>
-        <div class="input-field col s6">
-          <i id="account-circle" class="material-icons prefix">account_circle</i>
-          <input type="text" id = "login-username" name="username" value="" placeholder = "username">
-        </div>
-        <div class="input-field col s6">
         <i id="mode-edit"class="material-icons prefix">mode_edit</i>
         <input type="password" id = "login-password" name="password" value="" placeholder = "password">
-        </div>
-        <input id="login-submit" type="submit" name="name" value = "Login">
+
+        <input id="login-submit" class = "btn btn" type="submit" name="name" value = "Login">
       </form>
-      <button type="button" id = "create-account" name="Create Account">Create Account</button>
     </div>
   </div>
 </div>
