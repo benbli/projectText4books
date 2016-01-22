@@ -10,6 +10,7 @@ var TextbookSchema = mongoose.Schema({
   image: { type: String },
   professor: { type: String },
   college: { type: String },
+  email: { type: String },
   price: { type: Number, required: true },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,

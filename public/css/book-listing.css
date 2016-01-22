@@ -18,8 +18,9 @@
 #each-book {
   overflow: hidden;
   text-align: center;
+  z-index: 0;
   width: 250px;
-  height: 500px;
+  height: 525px;
   display: inline-block;
   background-color: rgba(255, 255, 255, 0.72);
   padding: 4px 15px 15px 15px;
@@ -28,6 +29,10 @@
   -webkit-box-shadow: 0 8px 6px -6px black;
   -moz-box-shadow: 0 8px 6px -6px black;
   box-shadow: 0 8px 6px -6px black;
+}
+
+#delete-book:hover {
+  cursor: pointer;
 }
 
 #sell-book-link {
@@ -45,6 +50,8 @@
 .card {
   width: 220px;
   height: 280px;
+  background: rgb(207, 207, 207);
+  z-index: 0;
 }
 
 .card-content {

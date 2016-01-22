@@ -61,6 +61,7 @@ function login(username, password, callback) {
     },
     success: function(data){
       console.log('data: ', data);
+      // console.log('email? ', data.email);
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       $.cookie('username', data.username);
@@ -132,6 +133,8 @@ function setTextbookFormHandler(textbookData, data, callback){
 
     var price = $("#price").val();
 
+    var email = $('#textbook-email').val();
+
     textbookData = {
       title: titleText,
       isbn: isbnText,
@@ -142,6 +145,7 @@ function setTextbookFormHandler(textbookData, data, callback){
       professor: professorText,
       college: collegeText,
       price: price,
+      email: email,
       user_id: userId
     };
 
@@ -183,6 +187,7 @@ function searchGoogleAPI(){
     method: 'get',
     url: "https://www.googleapis.com/books/v1/volumes?q=isbn:" + bookSearch,
     success: function(data){
+      $('#isbn').val('');
       renderApiSearch(data);
     }
   })
@@ -199,28 +204,29 @@ function setApiSearchHandler(){
 
 function renderApiSearch(data){
   var modalBody = $('#search-results');
-  modalBody.append($('<h2 id = "book-title">').text(data.items[0].volumeInfo.title));
-  modalBody.append($('<h5 id = "book-isbn">').text(data.items[0].volumeInfo.industryIdentifiers[1].identifier));
-  modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
+  modalBody.append($('<h3 id = "book-title">').text(data.items[0].volumeInfo.title));
   if(data.items[0].volumeInfo.authors != undefined){
     for (var i = 0; i < data.items[0].volumeInfo.authors.length; i++) {
       var author = data.items[0].volumeInfo.authors[i];
       modalBody.append($('<h4 id = "book-author">').text(author));
     };
-  }
+  };
+  modalBody.append($('<h5 id = "book-isbn">').text(data.items[0].volumeInfo.industryIdentifiers[1].identifier));
+  modalBody.append($('<img id = "book-image">').attr('src', data.items[0].volumeInfo.imageLinks.smallThumbnail));
   modalBody.append($('<p id = "book-description">').append(data.items[0].volumeInfo.description));
   renderBookInputs();
 }
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">');
-  // form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
-  form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition">'));
+  form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
+  // form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition">'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
-  form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" value="25.67" placeholder = "Price"/>'));
-  form.append($('<input type = hidden id = "submit-user-id">').val($.cookie('user-id')));
-  form.append($('<input type = hidden id = "submit-textbook-college">').val($.cookie('college')));
-  form.append($('<input type = "submit" id = "submit-book" value = "Sell Book">'));
+  form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" placeholder = "Price"/>'));
+  form.append($('<input type = "hidden" id = "submit-user-id">').val($.cookie('user-id')));
+  form.append($('<input type = "hidden" id = "textbook-email">').val($.cookie('email')));
+  form.append($('<input type = "hidden" id = "submit-textbook-college">').val($.cookie('college')));
+  form.append($('<input type = "submit" id = "submit-book" class = "btn btn" value = "Sell Book">'));
   $('#search-results').append(form);
 }
 
@@ -287,6 +293,8 @@ function showModal(){
 
 function hideModal(){
   $('#exit-modal').click(function(){
+    $('#search-results').remove();
+    $('#isbn').val('');
     $('#modal-view').hide();
     $('body').css({
       // background: 'white'

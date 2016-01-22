@@ -43,7 +43,7 @@ router.post('/authenticate', function(req, res){      // POST to /api/users/auth
     databaseUser.authenticate(passwordTry, function(err, isMatch){
       if(isMatch){
         databaseUser.setToken(function(){
-          res.json({username: databaseUser.username, college: databaseUser.college, id: databaseUser.id, description: "Correct Password!!!", token: databaseUser.token });  // send token as json
+          res.json({username: databaseUser.username, college: databaseUser.college, id: databaseUser.id, email: databaseUser.email, description: "Correct Password!!!", token: databaseUser.token });  // send token as json
         });
       } else {
         res.json({description: "Sorry, wrong passwordddd", status: 302});
