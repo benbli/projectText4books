@@ -219,9 +219,9 @@ function renderApiSearch(data){
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">');
-  form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
-  // form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition">'));
-  form.append($('<input type = text id = "professor" placeholder = "Professors name">'));
+  // form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
+  form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition" required>'));
+  form.append($('<input type = text id = "professor" placeholder = "Professors name" required>'));
   form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" placeholder = "Price"/>'));
   form.append($('<input type = "hidden" id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = "hidden" id = "textbook-email">').val($.cookie('email')));
@@ -282,7 +282,7 @@ function setUserLoginView(){
 
 
 function showModal(){
-  $('#start-modal').click(function(){
+  $('body').on('click', '#start-modal', function(){
      console.log('clicked');
      $('#modal-view').toggle();
      $('body').css({
@@ -338,3 +338,11 @@ $(function(){
   setUserLoginView();
   setApiSearchHandler();
 });
+
+// $(document).ready(function(){
+//   $('select').material_select();
+//   $('select').on('contentChanged', function() {
+//     // re-initialize (update)
+//     $(this).material_select();
+//   });
+// })

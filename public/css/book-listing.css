@@ -42,7 +42,7 @@
 
 .sold-img {
   position: absolute;
-  z-index: 2;
+  z-index: 1;
   height: 150px;
   margin-left: -250px;
 }
@@ -58,4 +58,12 @@ div.card-content {
   position: relative;
   right: -15px;
   bottom: -50px;
+}
+
+#books-for-sale {
+  text-align: center;
+}
+
+#sold-books {
+  text-align: center;
 }

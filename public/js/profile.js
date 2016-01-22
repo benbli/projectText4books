@@ -14,6 +14,8 @@ function renderCurrentUser(data){
   var data = data.user_id;
   $('#sold-books').empty();
   $('#books-for-sale').empty();
+  var soldTextbooks = 0;
+  var sellingTextbooks = 0;
   for (var i = 0; i < data.length; i++) {
     var textbook = data[i];
     var eachBook = $('<div id = "each-book">');
@@ -27,12 +29,14 @@ function renderCurrentUser(data){
     }
     eachBook.append(title, author, isbn, condition, image, price);
     if(textbook.status === 0){
+      sellingTextbooks++;
       var sellingBookDiv = $('#books-for-sale');
       var soldButton =  $('<button data-id='+textbook._id+' id = "sell-book-link" class = "btn btn">').text('Book Has Been Sold');
       var deleteButton = $('<i data-id='+textbook._id+' id = "delete-book" class = "material-icons z-depth-1">').text('delete');
       eachBook.append(soldButton, deleteButton);
       sellingBookDiv.append(eachBook);
     } else if(textbook.status === 1) {
+      soldTextbooks++;
       var soldBookDiv = $('#sold-books');
       var sellButton = $('<button data-id='+textbook._id+' id = "re-list-book" class = "btn btn">').text("Re-List Book");
       var soldImg = $('<img class="sold-img">').attr('src', "./images/Sold.png");
@@ -40,7 +44,15 @@ function renderCurrentUser(data){
       soldBookDiv.append(eachBook, soldImg);
     }
   }
-}
+  if(soldTextbooks === 0) {
+    var noneSold = $('<h5 id = "none-sold">').text("You haven't sold any books yet!");
+    $('#sold-books').append(noneSold);
+  } else if(sellingTextbooks === 0) {
+    var noneSelling = $('<h5 id = "none-selling">').text("You aren't selling any textbooks right now!");
+    var sellTextbook = $('<button id = "start-modal" class = "btn btn">').text("Sell a Book");
+    $('#books-for-sale').append(noneSelling, sellTextbook);
+  }
+};
 
 function removeTextbook(textbookId){
   $.ajax({
