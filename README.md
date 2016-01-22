@@ -3,6 +3,8 @@ Text 4 Books
 
 https://giphy.com/gifs/1IROxfVMllhKM
 
+https://giphy.com/gifs/dtWFOExjhVy5q
+
 > Buy or sell textbooks to and from your peers.
 
 This application was created with thrifty college students in mind. Textbook prices are getting out of hand, so buy them from students at a reasonable price instead!
