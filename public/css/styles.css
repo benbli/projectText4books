@@ -6,16 +6,14 @@ body {
   text-align: center;
   background-attachment: fixed;
 }
+
 /*home page*/
 #landing-page {
   height: 400px;
-  width: 75%;
-  margin-left: 12.5%;
-  background: rgba(198, 198, 198, .95);
-  border-radius: 10px;
+  width: 100%;
   text-align: center;
   padding-top: 50px;
-  margin-top: 50px;
+  margin-top: -50px;
 }
 
 #textbook-info {
@@ -25,13 +23,17 @@ body {
 }
 
 #signup-button {
+  height: 40px;
   width: 100%;
-  margin-bottom: -300px;
+  margin-bottom: -280px;
+  font-size: 40px;
 }
 
 #login-button {
   width: 100%;
-  margin-bottom: -330px;
+  margin-bottom: -340px;
+  height: 40px;
+  font-size: 40px;
 }
 
 /*Signup modal*/
@@ -165,7 +167,7 @@ input {
   z-index: 2;
   background: rgb(255, 255, 255);
   width: 80%;
-  margin-left: -100px;
+  margin-left: -5%;
   height: 500px;
   margin-top: 50px;
   display: none;
@@ -176,7 +178,6 @@ input {
 }
 
 #book-description {
-  /*margin-left: 15%;*/
   display: inline-block;
 }
 

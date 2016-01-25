@@ -78,6 +78,7 @@ function markTextbookAsSold(textbookId, textbookStatus){
     url: '/api/books/' + textbookId,
     data: textbookStatus,
     success: function(data){
+      console.log('on success data: ', data);
       getUsersTextbooks();
     }
   })

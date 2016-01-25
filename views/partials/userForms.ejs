@@ -1,8 +1,8 @@
 
 
 <div id = "landing-page" class = "logged-out">
-  <h5 id = "textbook-info"></h5>
-  <a id = "signup-button" class="waves-effect waves-light btn modal-trigger" href="#modal1">Signup</a>
+  <h3 id = "textbook-info"></h3>
+  <a id = "signup-button" class="waves-effect waves-light btn modal-trigger" href="#modal1">Signup</a> </br>
   <a id = "login-button" class="waves-effect waves-light btn modal-trigger" href="#modal2">Login</a>
 </div>
 
@@ -18,7 +18,7 @@
           <input type="password" id = "signup-password" name="user[password]" placeholder = "password">
 
           <i class="material-icons prefix">email</i>
-          <input type="text" id = "signup-email" name="user[email]" value="" placeholder = "email">
+          <input id="email" type="email" class="validate" name = "user[email]" placeholder = "email">
 
           <i class="material-icons prefix">library_books</i>
           <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
@@ -42,7 +42,6 @@
         <input type="password" id = "login-password" name="password" value="" placeholder = "password">
 
         <input id="login-submit" class = "btn btn" type="submit" name="name" value = "Login">
-      </form>
-    </div>
+    </form>
   </div>
 </div>

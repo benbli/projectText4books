@@ -87,3 +87,15 @@ div.card-content {
 #sold-books {
   text-align: center;
 }
+
+#bidModal {
+  border: 1px solid black;
+  border-radius: 10px;
+  height: 400px;
+  z-index: 2;
+  position: absolute;
+  width: 70%;
+  background: white;
+  text-align: center;
+  padding: 10px;
+}

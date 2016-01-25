@@ -6,8 +6,9 @@ function createUser(userData, callback){
     url: '/api/users',
     data: {user: userData},
     success: function(data){
-      $('#modal1').closeModal();
       callback(data);
+      $('#modal1').closeModal();
+      $('#modal2').openModal();
     }
   });
 }
@@ -40,8 +41,8 @@ function setCreateUserHandler(){
     };
 
     createUser(userData, function(user){
-      // $('#login-div').show();
-      // $('#sign-up-div').hide();
+      $('#login-div').show();
+      $('#sign-up-div').hide();
       updateView();
     });
   });
@@ -58,7 +59,7 @@ function login(username, password, callback) {
       password: password
     },
     success: function(data){
-      $('#modal1').closeModal();
+      $('#modal2').closeModal();
       $.cookie('token', data.token);
       $.cookie('user-id', data.id);
       $.cookie('username', data.username);
@@ -87,7 +88,6 @@ function setLoginFormHandler(){
     passwordField.val('');
 
     login(username, password, function(callback){
-      $('#modal1').closeModal();
     });
   });
 }
@@ -217,6 +217,7 @@ function renderBookInputs(){
   form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition" required>'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name" required>'));
   form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" placeholder = "Price"/>'));
+  form.append($('<input type = "number" id = "acceptable-price" min = "0" step = "5" max = "100" placeholder = "Acceptable Bid Offer Differential in Percent">'));
   form.append($('<input type = "hidden" id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = "hidden" id = "textbook-email">').val($.cookie('email')));
   form.append($('<input type = "hidden" id = "submit-textbook-college">').val($.cookie('college')));

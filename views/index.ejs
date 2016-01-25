@@ -11,27 +11,19 @@
            <img class="activator" src="{{image}}">
          </div>
          <div class="card-content">
-           <span class="card-title activator grey-text text-darken-4"><i class="material-icons right transparent">more_vert</i></span>
+           <span class="card-title activator grey-text text-darken-4"><i class="material-icons right transparent">more_vert</i> </span>
          </div>
          <div class="card-reveal">
            <span class="card-title grey-text text-darken-4">{{title}}<i class="material-icons right ">close</i></span>
            <p>Condition: {{condition}}</p>
            <p>ISBN#: {{isbn}}</p>
            <p>Author(s): {{author}}</p>
-           <!-- <a href = "#" id = "show-description">Show Description</a> </br> -->
-           <!-- <p id = "card-description"> {{description}} <a href = "#" id = "hide-description">Hide Description</a></p> -->
-           <a href='mailto:{{email}}?subject=I am interested in your "{{title}}" book' target="_top"> Email Seller</a>
+           <a href='mailto:{{email}}?subject=I am interested in your "{{title}}" book' target="_top"> Email Seller</a> </br>
+           <a id = "offer-button" data-id = "{{_id}}" class="modal-trigger" href="#bidModal">Make an Offer</a> </br>
+           <a href = '#' id = "view-book" data-id = "{{_id}}">View Book</a>
          </div>
        </div>
        {{/each}}
-      <!-- {{#each textbooks}}
-        <div data-id={{_id}} class="listed-books" style="background: url({{image}}) no-repeat; background-size: contain;">
-          <li><h3 class="book-title">{{title}}</h3></li>
-          <li><h5 class="book-condition">Condition: {{condition}}</h5></li>
-          <li><p class="book-isbn">ISBN#: {{isbn}}</p></li>
-          <li><p class="book-author">author(s): {{author}}</p></li>
-        </div>
-      {{/each}} -->
     </ul>
   </script>
 </head>
@@ -41,6 +33,37 @@
   <% include ./partials/header %>
 
   <% include ./partials/userForms %>
+
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <form class="sign-up col s24" action="api/users" method="post">
+          <h3 id = "signup-title">Sign Up</h3>
+          <a href="#!" id = "close-signup" class=" modal-action modal-close waves-effect waves-green btn">X</a> </br>
+            <i id = "singup-name-icon" class="material-icons prefix">account_circle</i>
+            <input type="text" id = "signup-username" name="user[username]" placeholder = "username">
+
+            <i class="material-icons prefix">mode_edit</i>
+            <input type="password" id = "signup-password" name="user[password]" placeholder = "password">
+
+            <i class="material-icons prefix">email</i>
+            <input id="email" type="email" class="validate" name = "user[email]" placeholder = "email">
+
+            <i class="material-icons prefix">library_books</i>
+            <input type="text" id = "signup-college" name="user[college]" value="" placeholder = "college">
+
+            <input id="signup-submit" class = "btn btn" type="submit" name="name" value="Sign-Up"> </br>
+          </form>
+      </div>
+    </div>
+
+  <div id="bidModal" class="modal">
+    <div class="modal-content">
+        <h3 id="offer-title">Make an Offer</h3>
+        <a href="#!" id = "close-signup" class=" modal-action modal-close waves-effect waves-green btn">X</a></br>
+        <% include ./partials/bidForm %>
+    </div>
+  </div>
+
 ​
   <div id="modal-view">
     <button id = "exit-modal" class = "btn btn" type="button" name="button">X</button>

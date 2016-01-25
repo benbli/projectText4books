@@ -4,21 +4,27 @@ function getOneTextbook(id){
     method: 'get',
     url: '/api/books/' + id,
     success: function(data){
+      console.log(data);
+      var textbook = data;
+      renderTextbook(textbook);
     }
   })
 };
 
-function clickListener(){
-
-  $('body').on('click', '.listed-books', function() {
+function viewBookListener(){
+  $('body').on('click', '#view-book', function() {
+    console.log('click');
     getOneTextbook(this.dataset.id);
   });
+}
 
+function renderTextbook(textbook) {
+  $('#show-book-title').text('test');
 }
 
 
 $(function(){
 
-  clickListener();
+  viewBookListener();
 
 })

@@ -12,8 +12,8 @@ router.get('/', function(req, res){
   res.render('index', {title: 'Text4Books'});
 });
 
-router.get('/sell', function(req, res){
-  res.render('sell')
+router.get('/book', function(req, res){
+  res.render('book')
 });
 
 router.get('/profile', function(req, res){
