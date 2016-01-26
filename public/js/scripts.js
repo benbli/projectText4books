@@ -155,6 +155,7 @@ function setTextbookFormHandler(textbookData, data, callback){
     $('#modal-view').hide();
 
     createTextbook(userId, textbookData, function(textbook){
+      console.log(textbookData);
       updateView();
     })
   })
@@ -213,16 +214,16 @@ function renderApiSearch(data){
 
 function renderBookInputs(){
   var form = $('<form id = "submit-book-form">');
-  // form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option> </select> <label> Select</label> </div></br>'));
-  form.append($('<input type = "text" id = "book-condition" placeholder = "Book Condition" required>'));
+  form.append($('<div class="input-field"> <select id = "book-condition"> <option value="" disabled selected>Choose Book Condition</option> <option value="new">New</option> <option value="like-new">Like New</option> <option value="Used">Used</option><option value = "Poor"> Poor </option> </select required> </div></br>'));
   form.append($('<input type = text id = "professor" placeholder = "Professors name" required>'));
   form.append($('<input type="number" id = "price" min="0.01" step="0.01" max="300" placeholder = "Price"/>'));
-  form.append($('<input type = "number" id = "acceptable-price" min = "0" step = "5" max = "100" placeholder = "Acceptable Bid Offer Differential in Percent">'));
+  form.append($('<input type = "radio" id = "no-bids" value = "0"><label for="no-bids">Don\t Accept Other Offers </label> <input type = "radio" id = "accept-bids" value="1"><label for="accept-bids"> Accept Other Offers </label></br></br>'));
   form.append($('<input type = "hidden" id = "submit-user-id">').val($.cookie('user-id')));
   form.append($('<input type = "hidden" id = "textbook-email">').val($.cookie('email')));
   form.append($('<input type = "hidden" id = "submit-textbook-college">').val($.cookie('college')));
   form.append($('<input type = "submit" id = "submit-book" class = "btn btn" value = "Sell Book">'));
   $('#search-results').append(form);
+  $('select').material_select();
 }
 
 function getAllUsers(callback){
@@ -244,17 +245,6 @@ function renderTextbooks(textbook){
   $resultsPlaceholder.html(template(textbook));
   return textbookElement;
 }
-
-// function showDescription(){
-//   $('body').on('click', '#show-description', function(){
-//     $('#show-description').toggle();
-//     $('#card-description').toggle();
-//   })
-//   $('body').on('click', '#hide-description', function(){
-//     $('#show-description').toggle();
-//     $('#card-description').toggle();
-//   })
-// }
 
 function renderUsers(usersArray){
   var source = $("#users-template").html();  // Go find the template
@@ -352,7 +342,16 @@ function renderTextbookInfo(){
   }
 }
 
+function showOneBook(){
+  $('body').on('click', '#view-book', function(){
+    var textbookId = this.dataset.id;
+    console.log(textbookId);
+    sessionStorage.setItem('textbookId', textbookId);
+  })
+}
+
 $(function(){
+  showOneBook();
   setLoginFormHandler();
   setLogoutFormHandler();
   setCreateUserHandler();

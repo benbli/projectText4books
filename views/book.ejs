@@ -2,9 +2,32 @@
 <html lang="en">
 <head>
   <% include ./partials/head %>
+  <script src="./js/book.js"></script>
 </head>
 <body>
+  <% include ./partials/header %>
 
-  <h1 id = "show-book-title">Book Title...</h1>
+<div id = "make-offer" class = "modal">
+  <a href="#!" id = "exit-modal" class="modal-action modal-close waves-effect waves-green btn">X</a>
+  <h1>Make Offer</h1>
+  <h3>Seller is asking <span id = "show-book-price"></span></h3>
+  <form class="" action="index.html" method="post">
+    <input type="text" name="name" value="" placeholder = "Offer Amount">
+    <input type="submit" name="name" class = "waves-effect waves-green btn" value="Make Offer">
+  </form>
+</div>
+
+
+
+<div id = "show-textbook">
+  <h1 id = "show-book-title"> </h1>
+  <h2 id = "show-book-author"> </h2>
+  <h3 id = "show-book-price"></h3>
+  <img id = "show-book-image">
+  <p id = "show-book-description"></p>
+  <h4 id = "show-book-condition"></h4>
+  <h5 id = "show-book-professor"></h5>
+  <h5 id = "show-book-isbn"></h5>
+</div>
 
 </body>

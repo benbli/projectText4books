@@ -70,7 +70,7 @@
 .card {
   width: 220px;
   height: 280px;
-  background: rgb(207, 207, 207);
+  background: white;
   z-index: 0;
 }
 
@@ -88,7 +88,11 @@ div.card-content {
   text-align: center;
 }
 
-#bidModal {
+#make-offer {
+  padding: 10px;
+}
+
+/*#bidModal {
   border: 1px solid black;
   border-radius: 10px;
   height: 400px;
@@ -98,4 +102,4 @@ div.card-content {
   background: white;
   text-align: center;
   padding: 10px;
-}
+}*/

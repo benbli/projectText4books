@@ -205,7 +205,7 @@ input {
 .bookBg {
   padding: 0;
   margin: 0;
-  position: absolute;
+  position: absolute
   height: 100%;
   -webkit-filter: brightness(0.5);
   -o-filter: brightness(0.5);
@@ -221,6 +221,20 @@ input {
   font-family: 'Righteous', cursive;
 }
 
+#close-card {
+  position: absolute;
+}
+
 #card-description {
   display: none;
+}
+
+#show-textbook {
+  border-radius: 10px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  background: rgba(193, 193, 193, .9);
+  width: 80%;
+  margin-left: 10%;
+  padding: 15px;
 }

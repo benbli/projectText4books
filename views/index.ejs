@@ -14,13 +14,14 @@
            <span class="card-title activator grey-text text-darken-4"><i class="material-icons right transparent">more_vert</i> </span>
          </div>
          <div class="card-reveal">
-           <span class="card-title grey-text text-darken-4">{{title}}<i class="material-icons right ">close</i></span>
+           <span class="card-title grey-text text-darken-4">{{title}}<i id = "close-card" class="material-icons right ">close</i></span>
+           <p>Author(s): {{author}}</p>
+           <p> Asking: ${{price}}</p>
            <p>Condition: {{condition}}</p>
            <p>ISBN#: {{isbn}}</p>
-           <p>Author(s): {{author}}</p>
            <a href='mailto:{{email}}?subject=I am interested in your "{{title}}" book' target="_top"> Email Seller</a> </br>
            <a id = "offer-button" data-id = "{{_id}}" class="modal-trigger" href="#bidModal">Make an Offer</a> </br>
-           <a href = '#' id = "view-book" data-id = "{{_id}}">View Book</a>
+           <a href = '/{{_id}}' id = "view-book" data-id = "{{_id}}">View Book</a>
          </div>
        </div>
        {{/each}}

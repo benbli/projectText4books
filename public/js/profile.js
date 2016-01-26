@@ -112,7 +112,6 @@ function setRelistTextbookHandler(){
 }
 
 function getUserInformation(){
-  var userId;
   $.ajax({
     method: 'get',
     url: '/api/users/' + $.cookie('user-id'),

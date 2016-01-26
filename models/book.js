@@ -12,7 +12,7 @@ var TextbookSchema = mongoose.Schema({
   college: { type: String },
   email: { type: String },
   price: { type: Number, required: true },
-  acceptable_range: { type: Number },
+  accept_offers: { type: Number },
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
