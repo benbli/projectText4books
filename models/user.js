@@ -22,7 +22,7 @@ UserSchema.pre('save', function(next){  // BEFORE save happens
 UserSchema.methods.authenticate = function(passwordTry, callback){
   // Check if password is correct...
   bcrypt.compare(passwordTry, this.password, function(err, isMatch){
-    if(err){ return callback(err); }
+    if(err){ return callback(err) };
     callback(null, isMatch);  // call the callback
   });
 };
